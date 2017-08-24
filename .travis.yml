@@ -21,6 +21,6 @@ after_success:
 
 addons:
   artifacts:
-    paths: $(ls *.apk *.zip *.ipa)
+    paths: $(ls *.apk *.zip *.ipa | tr "\n" ":")
     target_paths: mobile-app/unstable/
     permissions: public-read
