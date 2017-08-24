@@ -1,0 +1,25 @@
+language: node_js
+node_js: 5
+
+cache:
+  directories:
+    - node_modules/
+
+before_install:
+  - npm install -g aurelia-cli
+
+script:
+  - ci/build_app.sh
+
+after_success:
+  - commit_hash=`git rev-parse --short HEAD`
+  - label="`date +%Y%m%d%H%M-$commit_hash`"
+  - mv android.apk churchconnect_mobile-app_android-$label.apk
+  - mv iphone.ipa churchconnect_mobile-app_ios-$label.ipa
+  - mv phonegap_code.zip churchconnect_mobile-app_phonegap_src-$label.zip
+
+addons:
+  artifacts:
+    paths: $(ls *.apk *.zip *.ipa)
+    target_paths: mobile-app/unstable/
+    permissions: public-read
