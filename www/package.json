@@ -17,7 +17,7 @@
     "aurelia-bootstrapper": "^1.0.0-rc.1.0.0",
     "aurelia-fetch-client": "^1.0.0-rc.1.0.0",
     "aurelia-orm": "^3.0.0-rc7",
-    "aurelia-ui-components": "git+https://bitbucket.org/churchconnectapp/aurelia-ui-components.git",
+    "aurelia-ui-components": "churchconnect/aurelia-ui-components",
     "aurelia-validation": "^0.12.5",
     "bluebird": "^3.4.1",
     "bourbon": "^4.2.7",
