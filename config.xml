@@ -21,47 +21,69 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
     <icon src="res/icon.png" />
+    <splash src="res/splash.png" />
 
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="ShowSplashScreenSpinner" value="false"/>
         <preference name="FadeSplashScreenDuration" value="0"/>
+
+        <icon src="res/android/drawable/icon.png" platform="android" />
+        <icon src="res/android/drawable-hdpi/icon.png" platform="android" qualifier="hdpi" />
+        <icon src="res/android/drawable-ldpi/icon.png" platform="android" qualifier="ldpi" />
+        <icon src="res/android/drawable-mdpi/icon.png" platform="android" qualifier="mdpi" />
+        <icon src="res/android/drawable-xhdpi/icon.png" platform="android" qualifier="xhdpi" />
+        <icon src="res/android/drawable-xxhdpi/icon.png" platform="android" qualifier="xxhdpi" />
+        <icon src="res/android/drawable-xxxhdpi/icon.png" platform="android" qualifier="xxxhdpi" />
+
+        <splash src="res/android/drawable/screen.png" platform="android" />
+        <splash src="res/android/drawable-hdpi/screen.png" platform="android" qualifier="hdpi" />
         <splash src="res/android/drawable-ldpi/screen.png" platform="android" qualifier="ldpi" />
         <splash src="res/android/drawable-mdpi/screen.png" platform="android" qualifier="mdpi" />
-        <splash src="res/android/drawable-hdpi/screen.png" platform="android" qualifier="hdpi" />
         <splash src="res/android/drawable-xhdpi/screen.png" platform="android" qualifier="xhdpi" />
-        <splash src="res/android/drawable-xxhdpi/screen.png" platform="android" qualifier="port-xxhdpi" />
+        <splash src="res/android/drawable-xxhdpi/screen.png" platform="android" qualifier="xxhdpi" />
+        <splash src="res/android/drawable-xxxhdpi/screen.png" platform="android" qualifier="xxxhdpi" />
     </platform>
     <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-        <icon height="180" src="res/ios/icon-60@3x.png" width="180" />
-        <icon height="60" src="res/ios/icon-60.png" width="60" />
-        <icon height="120" src="res/ios/icon-60@2x.png" width="120" />
-        <icon height="76" src="res/ios/icon-76.png" width="76" />
-        <icon height="152" src="res/ios/icon-76@2x.png" width="152" />
-        <icon height="40" src="res/ios/icon-40.png" width="40" />
-        <icon height="80" src="res/ios/icon-40@2x.png" width="80" />
-        <icon height="120" src="res/ios/icon-40@3x.png" width="120" />
-        <icon height="29" src="res/ios/icon-small.png" width="29" />
-        <icon height="58" src="res/ios/icon-small@2x.png" width="58" />
-        <icon height="87" src="res/ios/icon-small@3x.png" width="87" />
-
+        <allow-intent href="itms:*"/>
+        <allow-intent href="itms-apps:*"/>
         <preference name="ShowSplashScreenSpinner" value="false"/>
         <preference name="FadeSplashScreenDuration" value="0"/>
 
-        <!-- iPhone and iPod touch -->
-        <splash src="Default.png" platform="ios" width="320" height="480" />
-        <splash src="Default@2x.png" platform="ios" width="640" height="960" />
+        <icon src="res/ios/Icon-167.png" width="167" height="167" platform="ios"/>
+        <icon src="res/ios/Icon-40.png" width="40" height="40" platform="ios"/>
+        <icon src="res/ios/Icon-40@2x.png" width="80" height="80" platform="ios"/>
+        <icon src="res/ios/Icon-50.png" width="50" height="50" platform="ios"/>
+        <icon src="res/ios/Icon-50@2x.png" width="100" height="100" platform="ios"/>
+        <icon src="res/ios/Icon-60.png" width="60" height="60" platform="ios"/>
+        <icon src="res/ios/Icon-60@2x.png" width="120" height="120" platform="ios"/>
+        <icon src="res/ios/Icon-60@3x.png" width="180" height="180" platform="ios"/>
+        <icon src="res/ios/Icon-72.png" width="72" height="72" platform="ios"/>
+        <icon src="res/ios/Icon-72@2x.png" width="144" height="144" platform="ios"/>
+        <icon src="res/ios/Icon-76.png" width="76" height="76" platform="ios"/>
+        <icon src="res/ios/Icon-76@2x.png" width="152" height="152" platform="ios"/>
+        <icon src="res/ios/Icon-small.png" width="29" height="29" platform="ios"/>
+        <icon src="res/ios/Icon-small@2x.png" width="58" height="58" platform="ios"/>
+        <icon src="res/ios/Icon-small@3x.png" width="87" height="87" platform="ios"/>
+        <icon src="res/ios/Icon.png" width="57" height="57" platform="ios"/>
+        <icon src="res/ios/Icon@2x.png" width="114" height="114" platform="ios"/>
 
-        <!-- iPhone 5 / iPod Touch (5th Generation) -->
-        <splash src="Default-568h@2x.png" platform="ios" width="640" height="1136" />
-
-        <!-- iPhone 6 -->
-        <splash src="res/ios/Default-667h@2x.png" platform="ios" width="750" height="1334" />
-        <splash src="Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
-
+        <splash src="res/ios/Default-1242@3x~iphone6s-landscape_2208x1242.png" width="2208" height="1242" platform="ios"/>
+        <splash src="res/ios/Default-1242@3x~iphone6s-portrait_1242x2208.png" width="1242" height="2208" platform="ios"/>
+        <splash src="res/ios/Default-568h@2x~iphone_640x1136.png" width="640" height="1136" platform="ios"/>
+        <splash src="res/ios/Default-750@2x~iphone6-landscape_1334x750.png" width="1334" height="750" platform="ios"/>
+        <splash src="res/ios/Default-750@2x~iphone6-portrait_750x1334.png" width="750" height="1334" platform="ios"/>
+        <splash src="res/ios/Default-Landscape@2x~ipad_2048x1496.png" width="2048" height="1496" platform="ios"/>
+        <splash src="res/ios/Default-Landscape@2x~ipad_2048x1536.png" width="2048" height="1536" platform="ios"/>
+        <splash src="res/ios/Default-Landscape~ipad_1024x748.png" width="1024" height="768" platform="ios"/>
+        <splash src="res/ios/Default-Landscape~ipad_1024x768.png" width="1024" height="768" platform="ios"/>
+        <splash src="res/ios/Default-Portrait@2x~ipad_1536x2008.png" width="1536" height="2008" platform="ios"/>
+        <splash src="res/ios/Default-Portrait@2x~ipad_1536x2048.png" width="1536" height="2048" platform="ios"/>
+        <splash src="res/ios/Default-Portrait~ipad_768x1024.png" width="768" height="1024" platform="ios"/>
+        <splash src="res/ios/Default.png" width="768" height="1004" platform="ios"/>
+        <splash src="res/ios/Default@2x~iphone_640x960.png" width="640" height="960" platform="ios"/>
+        <splash src="res/ios/Default~ipad.png" width="1536" height="2008" platform="ios"/>
+        <splash src="res/ios/Default~iphone.png" width="320" height="480" platform="ios"/>
     </platform>
 
-    <splash src="splash.png"/>
 </widget>
