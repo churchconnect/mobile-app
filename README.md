@@ -1,4 +1,4 @@
-# Church Connect Mobile App
+# Church Connect Mobile App [![Build Status](https://travis-ci.org/churchconnect/mobile-app.svg?branch=master)](https://travis-ci.org/churchconnect/mobile-app)
 
 This is a javascript application built on the aurelia framework. We use cordova / phonegap to build the javascript into a native iOS / Android application.
 
