@@ -1,0 +1,28 @@
+<!--
+    Copyright (c) 2016 by SharpTop Software, LLC
+    All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+    form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+    written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+-->
+<template>
+    <page-body>
+        <div if.bind="!emailSent">
+            <h3>What's your email address?</h3>
+
+            <form role="form" submit.delegate="login()" validate.bind="user.getValidation()">
+                <div class="form-group">
+                    <input type="text" name="username" id="username" value.bind="user.username"
+                           placeholder="Email Address"
+                           auto-focus>
+                </div>
+
+                <button type="submit" class="submit submit--login">Next</button>
+            </form>
+        </div>
+        <div if.bind="emailSent">
+            <h3>We just sent a secure login link to ${user.username}.</h3>
+            <p>Please check your email and click the link to login.</p>
+            <button type="submit" class="submit submit--login" click.delegate="reenterEmail()">Back</button>
+        </div>
+    </page-body>
+</template>

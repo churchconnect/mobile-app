@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="co.sharptop.church.connectApp" version="16.11.12" xmlns="http://www.w3.org/ns/widgets">
+    <name>ChurchConnect</name>
+    <description>
+        A mobile app to connect churches with their members.
+    </description>
+    <author email="info@churchconnectapp.org" href="http://churchconnectapp.org">
+        CurchConnect App
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="1.5.0" />
+    <plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.0" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <icon src="res/icon.png" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="ShowSplashScreenSpinner" value="false"/>
+        <preference name="FadeSplashScreenDuration" value="0"/>
+        <splash src="res/android/drawable-ldpi/screen.png" platform="android" qualifier="ldpi" />
+        <splash src="res/android/drawable-mdpi/screen.png" platform="android" qualifier="mdpi" />
+        <splash src="res/android/drawable-hdpi/screen.png" platform="android" qualifier="hdpi" />
+        <splash src="res/android/drawable-xhdpi/screen.png" platform="android" qualifier="xhdpi" />
+        <splash src="res/android/drawable-xxhdpi/screen.png" platform="android" qualifier="port-xxhdpi" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="180" src="res/ios/icon-60@3x.png" width="180" />
+        <icon height="60" src="res/ios/icon-60.png" width="60" />
+        <icon height="120" src="res/ios/icon-60@2x.png" width="120" />
+        <icon height="76" src="res/ios/icon-76.png" width="76" />
+        <icon height="152" src="res/ios/icon-76@2x.png" width="152" />
+        <icon height="40" src="res/ios/icon-40.png" width="40" />
+        <icon height="80" src="res/ios/icon-40@2x.png" width="80" />
+        <icon height="120" src="res/ios/icon-40@3x.png" width="120" />
+        <icon height="29" src="res/ios/icon-small.png" width="29" />
+        <icon height="58" src="res/ios/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/ios/icon-small@3x.png" width="87" />
+
+        <preference name="ShowSplashScreenSpinner" value="false"/>
+        <preference name="FadeSplashScreenDuration" value="0"/>
+
+        <!-- iPhone and iPod touch -->
+        <splash src="Default.png" platform="ios" width="320" height="480" />
+        <splash src="Default@2x.png" platform="ios" width="640" height="960" />
+
+        <!-- iPhone 5 / iPod Touch (5th Generation) -->
+        <splash src="Default-568h@2x.png" platform="ios" width="640" height="1136" />
+
+        <!-- iPhone 6 -->
+        <splash src="res/ios/Default-667h@2x.png" platform="ios" width="750" height="1334" />
+        <splash src="Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+
+    </platform>
+
+    <splash src="splash.png"/>
+</widget>

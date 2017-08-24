@@ -1,0 +1,23 @@
+<!--
+    Copyright (c) 2016 by SharpTop Software, LLC
+    All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+    form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+    written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+-->
+<template>
+    <page-header title="Prayer Time" image="https://images.contentful.com/og0cae44jgie/4qgZD3p7VYqWsi0Es2uyqi/5c40bcbe1e03bf46d18aa2fbef6f7c5e/prayer-time.png?h=250&">
+    </page-header>
+
+    <page-body>
+        <card if.bind="prayerRequest.title">
+            <card-header title.bind="prayerRequest.title"></card-header>
+
+            <p>${prayerRequest.description} - ${prayerRequest.author}</p>
+        </card>
+
+        <button click.delegate="navigationService.go('#/prayer-requests/form')">
+            Add a Prayer Request
+        </button>
+    </page-body>
+
+</template>

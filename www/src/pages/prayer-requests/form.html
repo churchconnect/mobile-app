@@ -1,0 +1,40 @@
+<!--
+    Copyright (c) 2016 by SharpTop Software, LLC
+    All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+    form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+    written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+-->
+<template>
+    <page-header title="Prayer Time" image="https://images.contentful.com/og0cae44jgie/3dRIM3yQ806KWMe8WyM62u/61ef756ffb29ca399e4a701bf687424d/4-horizontal-blocks.png">
+    </page-header>
+
+    <page-body>
+
+        <form>
+            <validated-input-wrapper for="title" title="Summary">
+                <input type="text" name="author" value.bind="prayerRequest.title & validate" disabled.bind="submitting" placeholder="Short summary of your prayer request"/>
+            </validated-input-wrapper>
+
+            <validated-input-wrapper for="author" title="Name">
+                <input type="text" name="author" value.bind="prayerRequest.author & validate" disabled.bind="submitting" placeholder="Your name"/>
+            </validated-input-wrapper>
+
+            <validated-input-wrapper for="description" title="Prayer Request">
+                <textarea name="description" value.bind="prayerRequest.description & validate" disabled.bind="submitting" placeholder="Enter your private prayer request"></textarea>
+            </validated-input-wrapper>
+
+            <label><input type="radio" name="secret" model.bind="false" checked.bind="prayerRequest.secret" />Public</label>
+            <label><input type="radio" name="secret" model.bind="true" checked.bind="prayerRequest.secret" />Private</label>
+
+            <p class="centered" if.bind="prayerRequest.secret">
+                This will be submitted to our pastors only.
+            </p>
+            <p class="centered" if.bind="!prayerRequest.secret">
+                This will be displayed on the public prayer request list.
+            </p>
+
+            <button click.delegate="submitForm()" disabled.bind="submitting || validationController.errors.length">${ submitting ? "Submitting..." : "Submit" }</button>
+        </form>
+
+    </page-body>
+</template>

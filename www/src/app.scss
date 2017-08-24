@@ -1,0 +1,151 @@
+/*
+ * Copyright (c) 2016 by SharpTop Software, LLC
+ * All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+ * form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+ * written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+ */
+
+//override variables
+$fa-font-path: "./fonts";
+
+// vendors
+@import "./node_modules/framework7/dist/css/framework7.ios.css";
+@import "./node_modules/framework7/dist/css/framework7.ios.colors.css";
+@import "./node_modules/bourbon/app/assets/stylesheets/_bourbon";
+@import "./node_modules/font-awesome/scss/font-awesome";
+@import "./node_modules/aurelia-ui-components/dist/components";
+@import "./fonts/fonts";
+
+body {
+    font-family: 'VerelaRound';
+    font-size: $base-font-size;
+    font-weight: 400;
+
+    &.with-panel-right-reveal {
+        .views {
+            @include transform(translate3d(-88%, 0, 0));
+        }
+
+        .panel-overlay {
+            margin-left: -88%;
+        }
+    }
+}
+
+.centered {
+    text-align: center;
+}
+
+.card, .post {
+    iframe {
+        width: 100%;
+    }
+}
+
+.post-summary {
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.navbar {
+    background: color(primary, base);
+    color: color(neutral, lighter);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+
+    a.link {
+        color: color(neutral, lighter);
+        opacity: 1;
+        transition: opacity $base-duration $base-timing;
+
+        &.hidden {
+            opacity: 0;
+        }
+
+        &.hamburger-icon {
+            @include flex-direction(column);
+
+            box-sizing: border-box;
+            height: auto;
+            line-height: 1;
+
+            i {
+                background: color(neutral, lightest);
+                border-radius: em(5px);
+                margin: 0 0 em(4px) 0;
+                width: em(20px);
+                height: em(4px);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+.home-postGroup-summary {
+    img {
+        width: 100%;
+        height: auto;
+        margin-top: 1.75em;
+    }
+}
+
+a.icon-link {
+    color: color(social, link); /* sorry Jon :-P */
+    margin-left: 0.75em;
+}
+
+.navbar-inner {
+    padding: 0 em($medium-spacing);
+}
+
+.page {
+    background: color(neutral, lightest);
+}
+
+.home .page {
+    background: color(neutral, light);
+}
+
+.profile-summary {
+    background: url(images/profile-background.png) center center no-repeat;
+    background-size: cover;
+}
+
+.post {
+    h1, h3 {
+        text-align: center;
+    }
+
+    &.has-share-link {
+        border-bottom: 1px solid color(neutral, dark);
+    }
+}
+
+.share-link {
+    color: color(neutral, dark);
+}
+.page-body {
+    .share-link {
+        margin-top: em($medium-spacing);
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .arrow-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.link-button-solo {
+    width: 100%;
+}

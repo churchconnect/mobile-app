@@ -1,0 +1,54 @@
+<!--
+    Copyright (c) 2016 by SharpTop Software, LLC
+    All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+    form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+    written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+-->
+<template>
+    <require from="./app.css"></require>
+
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+
+    <navigation router.bind="router" align-right="true">
+        <div slot="before-navigation">
+            <profile-summary user.bind="user" if.bind="userService.isAuthenticated"></profile-summary>
+        </div>
+    </navigation>
+
+    <div class="views" class.bind="router.currentInstruction.config.name">
+        <div class="view view-main" data-page="home">
+            <div class="pages toolbar-through">
+                <div class="page navbar-fixed" data-page="home">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="left">
+                                <a href="#" class="link icon-only" click.delegate="router.navigateBack()" class.bind="router.currentInstruction.config.name === 'home' ? 'hidden' : ''">
+                                    <i class="icon icon-back"></i>
+                                </a>
+                            </div>
+
+                            <div class="center sliding">TRBC</div>
+
+                            <div class="right">
+                                <a href="#" data-panel="right" class="link open-panel hamburger-icon">
+                                    <i></i>
+                                    <i></i>
+                                    <i></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <flash></flash>
+                    <tabs tabs.bind="tabs" if.bind="router.currentInstruction.config.name !== 'login'"></tabs>
+
+                    <div class="page-content">
+                        <router-view></router-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <loading-indicator></loading-indicator>
+</template>

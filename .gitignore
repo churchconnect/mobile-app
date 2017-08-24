@@ -1,0 +1,12 @@
+node_modules
+.idea
+.DS_STORE
+*bundle.js*
+environment.js
+cordova-app
+npm-debug.log
+build
+*.pyc
+*.apk
+*.ipa
+*.zip

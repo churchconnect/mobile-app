@@ -1,0 +1,103 @@
+<!--
+    Copyright (c) 2016 by SharpTop Software, LLC
+    All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+    form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+    written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+-->
+<template>
+    <slider show-controls="true" loop="true" if.bind="feed.bannerImages" autoplay="5000">
+        <slide repeat.for="bannerImage of feed.bannerImages" aspect-ratio=".5625">
+            <img src.bind="bannerImage.image.url" click.delegate="navigationService.go(bannerImage.link.url)">
+        </slide>
+    </slider>
+
+    <!-- EVENTS -->
+    <card if.bind="feed.events">
+        <card-header title="Events"></card-header>
+
+        <image-embed
+            source="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"
+            full-width="true">
+        </image-embed>
+
+        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | limitTo:3" click.trigger="navigationService.go(event)">
+            ${event.startDate | date} - ${event.title}
+        </p>
+        <card-links>
+            <a click.delegate="navigationService.go('#/events/list/')">See All</a>
+        </card-links>
+    </card>
+
+    <!-- GIVING -->
+    <card if.bind="feed.givingURL">
+        <card-header title="Giving"></card-header>
+        <share-link sharing-info.bind="sharingInfo.giving"></share-link>
+
+        <button click.trigger="give()" class="link-button-solo">Give</button>
+    </card>
+
+    <!-- POST GROUPS -->
+    <card repeat.for="postGroup of feed.postGroups">
+        <card-header title.bind="postGroup.title"></card-header>
+        <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
+        <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
+        <div innerHTML.bind="postGroup.lastPost.summary | markdown" class="home-postGroup-summary"></div>
+
+        <card-links>
+            <a click.delegate="navigationService.go(postGroup.lastPost)">Latest</a>
+            <a click.delegate="navigationService.go(postGroup)" if.bind="!postGroup.hasOnePost()">See All</a>
+        </card-links>
+    </card>
+
+    <!-- PRAYER TIME -->
+    <card if.bind="feed.hasPrayerRequests">
+        <card-header title="Prayer Time"></card-header>
+
+        <image-embed
+            source="https://images.contentful.com/og0cae44jgie/4qgZD3p7VYqWsi0Es2uyqi/5c40bcbe1e03bf46d18aa2fbef6f7c5e/prayer-time.png?h=250&"
+            full-width="true">
+        </image-embed>
+
+        <p>Submit a Prayer Request to the Pastors.</p>
+        <card-links>
+            <a click.delegate="navigationService.go('#/prayer-requests/list')">Pray</a>
+            <a click.delegate="navigationService.go('#/prayer-requests/form')">Ask for Prayer</a>
+        </card-links>
+    </card>
+
+    <!-- WATCH LIVE -->
+    <card if.bind="feed.liveStreamLink">
+        <card-header title.bind="feed.liveStreamLink.title"></card-header>
+        <share-link sharing-info.bind="sharingInfo.streaming"></share-link>
+
+        <button click.trigger="navigationService.go(feed.liveStreamLink.url)" class="link-button-solo">${feed.liveStreamLink.textToDisplay}</button>
+    </card>
+
+    <!-- SONG LIST -->
+    <card full-height="true" if.bind="feed.songs">
+        <card-header title="Song List"></card-header>
+
+        <list full-width="true">
+            <list-item repeat.for="song of feed.songs" title.bind="song.title" subtitle.bind="song.artist">
+                <div slot="after-content">
+                    <a click.delegate="navigationService.go(song.lyricsLink.url)" if.bind="song.lyricsLink" class="icon-link">
+                        <item-icon icon="file-text-o"></item-icon>
+                    </a>
+                    <a click.delegate="navigationService.go(song.spotifyLink.url)" if.bind="song.spotifyLink" class="icon-link">
+                        <item-icon icon="spotify"></item-icon>
+                    </a>
+                    <a click.delegate="navigationService.go(song.amazonLink.url)" if.bind="song.amazonLink" class="icon-link">
+                        <item-icon icon="amazon"></item-icon>
+                    </a>
+                    <a click.delegate="navigationService.go(song.itunesLink.url)" if.bind="song.itunesLink" class="icon-link">
+                        <item-icon icon="music"></item-icon>
+                    </a>
+                    <a click.delegate="navigationService.go(song.youtubeLink.url)" if.bind="song.youtubeLink" class="icon-link">
+                        <item-icon icon="youtube"></item-icon>
+                    </a>
+                </div>
+            </list-item>
+        </list>
+    </card>
+
+</template>
