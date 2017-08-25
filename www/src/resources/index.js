@@ -6,5 +6,11 @@
  */
 
 export function configure(config) {
-    config.globalResources(['./date-value-converter', './markdown-value-converter', './limit-to-value-converter', './sort-value-converter']);
+    config.globalResources([
+        './date-value-converter',
+        './markdown-value-converter',
+        './limit-to-value-converter',
+        './sort-value-converter',
+        './filter-out-past-items-value-converter'
+    ]);
 }

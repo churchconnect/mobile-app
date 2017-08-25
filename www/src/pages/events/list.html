@@ -10,7 +10,7 @@
     </page-header>
 
     <!--TODO: do the click method binding the right way -->
-    <div repeat.for="event of events | sort:'startDate':'ascending'" click.trigger="show(event)">
+    <div repeat.for="event of events | sort:'startDate':'ascending' | filterOutPastItems" click.trigger="navigationService.go(event)">
         <arrow-card>
             <div class="one-line-card-content">${event.startDate | date} - ${event.title}</div>
         </arrow-card>

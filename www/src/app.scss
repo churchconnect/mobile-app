@@ -118,6 +118,30 @@ a.icon-link {
     background-size: cover;
 }
 
+.post-iframe {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    border: none;
+    height: calc(100% - 44px);
+    width: 100%;
+}
+
+.post-group-post-summary {
+    iframe { width: 100%; }
+
+    & > *:first-child { margin-top: 0; }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.post-group-paged-content {
+    margin-bottom: 0;
+}
+
 .post {
     h1, h3 {
         text-align: center;

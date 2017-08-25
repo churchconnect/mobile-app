@@ -40,7 +40,6 @@ export class NavigationService {
 
         } else if (object instanceof Post) {
             this.goToPost(object)
-
         } else {
             console.log("Cannot navigate to", object)
         }
@@ -60,7 +59,11 @@ export class NavigationService {
 
     goToPost(post) {
         if (post.externalUrl) {
-            this.goToUrl(post.externalUrl)
+            if(post.useIframe) {
+                this.goToContentfulPost(post)
+            } else {
+                this.goToUrl(post.externalUrl)
+            }
         } else {
             if (post.isRssPost) {
                 this.goToRssPost(post)

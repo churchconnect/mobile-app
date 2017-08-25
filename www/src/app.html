@@ -23,7 +23,7 @@
                     <div class="navbar">
                         <div class="navbar-inner">
                             <div class="left">
-                                <a href="#" class="link icon-only" click.delegate="router.navigateBack()" class.bind="router.currentInstruction.config.name === 'home' ? 'hidden' : ''">
+                                <a href="#" class="link icon-only" click.delegate="router.navigateBack()" click.trigger="showFooter = true" class.bind="router.currentInstruction.config.name === 'home' ? 'hidden' : ''">
                                     <i class="icon icon-back"></i>
                                 </a>
                             </div>
@@ -41,7 +41,7 @@
                     </div>
 
                     <flash></flash>
-                    <tabs tabs.bind="tabs" if.bind="router.currentInstruction.config.name !== 'login'"></tabs>
+                    <tabs tabs.bind="tabs" if.bind="showFooter && router.currentInstruction.config.name !== 'login'"></tabs>
 
                     <div class="page-content">
                         <router-view></router-view>

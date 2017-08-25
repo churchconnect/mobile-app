@@ -6,7 +6,10 @@
 -->
 <template>
     <page-body>
-        <div class="post" class.bind="post.sharingInfo ? 'has-share-link' : ''" if.bind="post.content" innerHTML.bind="post.content | markdown"></div>
-        <share-link if.bind="post.sharingInfo" sharing-info.bind="post.sharingInfo">Share</share-link>
+        <div if.bind="!iframeUrl">
+            <div class="post" class.bind="post.sharingInfo ? 'has-share-link' : ''" if.bind="post.content" innerHTML.bind="post.content | markdown"></div>
+            <share-link if.bind="post.sharingInfo" sharing-info.bind="post.sharingInfo">Share</share-link>
+        </div>
+        <iframe src.bind="iframeUrl" class="post-iframe" if.bind="iframeUrl"></iframe>
     </page-body>
 </template>

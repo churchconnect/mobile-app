@@ -20,7 +20,7 @@
             full-width="true">
         </image-embed>
 
-        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | limitTo:3" click.trigger="navigationService.go(event)">
+        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.trigger="navigationService.go(event)">
             ${event.startDate | date} - ${event.title}
         </p>
         <card-links>

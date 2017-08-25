@@ -19,8 +19,4 @@ export class EventsList {
         this.events = eventService.list()
     }
 
-    show(event) {
-        this.navigationService.go(event)
-    }
-
 }
