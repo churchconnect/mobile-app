@@ -1,0 +1,81 @@
+/*
+ * Copyright (c) 2016 by SharpTop Software, LLC
+ * All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
+ * form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
+ * written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
+ */
+
+paged-content {
+    display: block;
+    margin-bottom: 30px;
+}
+
+.paged-content-nav {
+    display: flex;
+    margin: 0 0 0.9375em 0;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &.disabled { display: none; }
+
+    & > .disabled { opacity: 0; }
+
+    & > .active { opacity: 1; }
+
+    .paged-content-nav-previous, .paged-content-nav-pages, .paged-content-nav-next {
+        flex-grow: 1;
+    }
+
+    .paged-content-nav-pages {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 0 10px -10px 10px;
+    }
+
+    .paged-content-nav-pages-page {
+        padding: 0 1.5%;
+        position: relative;
+        margin-bottom: 10px;
+
+        &.active {
+            .paged-content-page-number-wrap {
+                background: rgb(0, 122, 255);
+                border: 1px solid transparent;
+
+                span {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .paged-content-nav-next { text-align: right; }
+
+    .paged-content-page-number-wrap {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgb(0, 122, 255);
+        border-radius: 4px;
+        position: relative;
+
+        span {
+            color: rgb(0, 122, 255);
+            font-size: 0.875em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+.paged-content-list-container {
+    display: none;
+
+    & > div:last-child .arrow-card {
+        margin-bottom: 0;
+    }
+
+    &.active { display: block; }
+}

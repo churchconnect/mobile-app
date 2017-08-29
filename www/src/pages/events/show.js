@@ -27,5 +27,4 @@ export class EventsShow {
 
         this.event = this.eventService.findOne(params.id)
     }
-
 }

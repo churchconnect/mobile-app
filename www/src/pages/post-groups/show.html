@@ -7,12 +7,22 @@
 <template>
     <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
 
-    <!--TODO: do the click method binding the right way -->
-    <div repeat.for="post of postGroup.publishedPosts | sort:'date':'descending'" click.trigger="showPost(post)">
-        <arrow-card>
-            <card-header title.bind="post.title"></card-header>
+    <page-body>
+        <paged-content class="post-group-paged-content"
+                       content.bind="postGroup.publishedPosts"
+                       limit-per-page.bind="5"
+                       current-page-index.bind="pagedContentMemory.pagedIndex"
+                       sort-by.bind="'date'"
+                       sort-direction.bind="'descending'">
+            <template replace-part="paged-content-list-item">
+                <div click.trigger="navigationService.go(item)">
+                    <arrow-card>
+                        <card-header title.bind="item.title"></card-header>
 
-            <div innerHTML.bind="post.summary" class="post-summary"></div>
-        </arrow-card>
-    </div>
+                        <div class="post-group-post-summary" innerHTML.bind="item.summary | markdown"></div>
+                    </arrow-card>
+                </div>
+            </template>
+        </paged-content>
+    </page-body>
 </template>
