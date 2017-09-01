@@ -22,7 +22,7 @@ export class PostsShow {
             this.post = this.rssPostService.rssPost
         // Else... assume that it is a contentful post and hit the API
         } else {
-            if(!params.id) {
+            if(params.id) {
                 this.postService.findOne(params.id).promise.then((res) => {
                     this.post = res
 
