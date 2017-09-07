@@ -1,10 +1,3 @@
-/*
- * Copyright (c) 2016 by SharpTop Software, LLC
- * All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
- * form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
- * written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
- */
-
 import {
     Asset,
     BannerImage,
@@ -37,9 +30,10 @@ let models = [
 
 export class ResourceService {
 
-    constructor(api, entityClass = Resource) {
+    constructor(api, entityClass = Resource, objectCache = null) {
         this.api = api
         this.entityClass = entityClass
+        this.objectCache = objectCache
     }
 
     save(object) {
@@ -55,6 +49,10 @@ export class ResourceService {
     }
 
     findOne(id) {
+        if (this.objectCache && this.objectCache.has(id)) {
+            return this.objectCache.get(id)
+        }
+
         return this.convertRequestToResource(this.api.find(this.entityClass.endpoint, id))
     }
 

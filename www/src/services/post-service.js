@@ -1,20 +1,14 @@
-/*
- * Copyright (c) 2016 by SharpTop Software, LLC
- * All rights reserved. No part of this software project may be used, reproduced, distributed, or transmitted in any
- * form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior
- * written permission of SharpTop Software, LLC. For permission requests, write to the author at info@sharptop.co.
- */
-
 import {inject} from 'aurelia-framework'
 import {Endpoint} from 'aurelia-api'
 import {ResourceService} from './resource-service'
 import {Post} from 'models/index'
+import {ObjectCache} from "./object-cache"
 
-@inject(Endpoint.of('api'))
+@inject(Endpoint.of('api'), ObjectCache)
 export class PostService extends ResourceService {
 
-    constructor(api) {
-        super(api, Post)
+    constructor(api, objectCache) {
+        super(api, Post, objectCache)
     }
 
 }

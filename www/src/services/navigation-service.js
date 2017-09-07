@@ -65,7 +65,7 @@ export class NavigationService {
                 this.goToUrl(post.externalUrl)
             }
         } else {
-            if (post.isRssPost) {
+            if (post.isRssPost()) {
                 this.goToRssPost(post)
 
             } else {
