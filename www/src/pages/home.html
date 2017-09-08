@@ -39,7 +39,7 @@
         <div innerHTML.bind="postGroup.postGroupsSummary | markdown" if.bind="!postGroup.lastPost && postGroup.postGroups.length > 0" class="home-postGroup-summary"></div>
 
         <card-links>
-            <a click.delegate="navigationService.go(postGroup.lastPost)">Latest</a>
+            <a click.delegate="navigationService.go(postGroup.lastPost)" if.bind="postGroup.postGroups.length === 0">Latest</a>
             <a click.delegate="navigationService.go(postGroup)" if.bind="!postGroup.hasOnePost()">See All</a>
         </card-links>
     </card>
