@@ -31,7 +31,7 @@
     </card>
 
     <!-- POST GROUPS -->
-    <card repeat.for="postGroup of feed.postGroups">
+    <card repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed">
         <card-header title.bind="postGroup.title"></card-header>
         <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
         <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
@@ -65,7 +65,7 @@
         <card-header title.bind="feed.liveStreamLink.title"></card-header>
         <share-link sharing-info.bind="sharingInfo.streaming"></share-link>
 
-        <button click.trigger="navigationService.go(feed.liveStreamLink.url)" class="link-button-solo">${feed.liveStreamLink.textToDisplay}</button>
+        <button click.trigger="navigationService.go(feed.liveStreamLink.post)" class="link-button-solo">${feed.liveStreamLink.textToDisplay}</button>
     </card>
 
     <!-- SONG LIST -->
