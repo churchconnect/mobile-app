@@ -40,6 +40,7 @@ export class NavigationService {
 
         } else if (object instanceof Post) {
             this.goToPost(object)
+
         } else {
             console.log("Cannot navigate to", object)
         }

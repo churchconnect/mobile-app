@@ -26,8 +26,11 @@ export class PostGroupsShow {
 
         this.postGroupService.findOne(params.id).promise.then((res) => {
             this.postGroup = res
-            this.pagedContentMemory = this.pagedContentResolver({ 'id': params.id })
-            this.pagedContentMemory.setPage((params.page) ? parseInt(params.page) - 1 : 0)
+
+            if(this.postGroup.postGroups.length === 0) {
+                this.pagedContentMemory = this.pagedContentResolver({'id': params.id})
+                this.pagedContentMemory.setPage((params.page) ? parseInt(params.page) - 1 : 0)
+            }
         }, (err) => {
             this.messageService.error("Post Group not found", true)
             this.router.navigateBack()
