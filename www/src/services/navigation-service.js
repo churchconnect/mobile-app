@@ -20,6 +20,14 @@ export class NavigationService {
         }
     }
 
+    getPostGroupDestination(postGroup) {
+        if(postGroup.postGroups.length > 0 || !postGroup.hasOnePost()) {
+            this.go(postGroup)
+        } else {
+            this.go(postGroup.lastPost)
+        }
+    }
+
     goToStringLink(link) {
         if (this.isInternalUrl(link)) {
             this.router.navigate(link)

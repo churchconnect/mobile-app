@@ -1,6 +1,7 @@
 <template>
     <require from="../../resources/templates/paged-content"></require>
 
+
     <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
 
     <page-body>
@@ -26,17 +27,14 @@
             <div class="associated-postGroups-container">
                 <h3 class="associated-groups-title">Associated Groups</h3>
                 <div class="associated-postGroups-list">
-                    <card repeat.for="pg of postGroup.postGroups">
-                        <card-header title.bind="pg.title"></card-header>
-                        <share-link if.bind="pg.lastPost.sharingInfo" sharing-info.bind="pg.lastPost.sharingInfo"></share-link>
-                        <image-embed if.bind="pg.media.url" source.bind="pg.media.url" full-width="true"></image-embed>
-                        <div innerHTML.bind="pg.lastPost.summary | markdown" if.bind="pg.lastPost" class="home-postGroup-summary"></div>
-
-                        <card-links>
-                            <a click.delegate="navigationService.go(pg.lastPost)">Latest</a>
-                            <a click.delegate="navigationService.go(pg)" if.bind="!pg.hasOnePost()">See All</a>
-                        </card-links>
-                    </card>
+                    <a click.delegate="navigationService.getPostGroupDestination(pg)" repeat.for="pg of postGroup.postGroups" class="card-wrap">
+                        <card>
+                            <card-header title.bind="pg.title"></card-header>
+                            <share-link if.bind="pg.lastPost.sharingInfo" sharing-info.bind="pg.lastPost.sharingInfo"></share-link>
+                            <image-embed if.bind="pg.media.url" source.bind="pg.media.url" full-width="true"></image-embed>
+                            <div innerHTML.bind="pg.lastPost.summary | markdown" if.bind="pg.lastPost" class="home-postGroup-summary"></div>
+                        </card>
+                    </a>
                 </div>
             </div>
         </div>
