@@ -1,0 +1,27 @@
+<template>
+    <require from="./paged-content.css" as="scoped"></require>
+
+    <div class="paged-content">
+        <div class.bind="pageCount === 1 ? 'paged-content-nav disabled' : 'paged-content-nav'">
+            <a class="paged-content-nav-previous ${(currentPageIndex === 0) ? 'disabled' : 'active'}" href="javascript:;" click.trigger="showPreviousPage()">
+                <i class="icon icon-back"></i>
+            </a>
+            <div class="paged-content-nav-pages">
+                <a href="#" class="paged-content-nav-pages-page ${(index === currentPageIndex) ? 'active' : ''}" repeat.for="[index, group] of sortedContentMap" click.trigger="showPage(index)">
+                    <div class="paged-content-page-number-wrap"><span>${index+1}</span></div>
+                </a>
+            </div>
+            <a class="paged-content-nav-next ${(currentPageIndex === pageCount-1) ? 'disabled' : 'active'}" href="javascript:;" click.trigger="showNextPage()">
+                <i class="icon icon-forward"></i>
+            </a>
+        </div>
+
+        <div class="paged-content-list">
+            <div class="paged-content-list-container ${(index === currentPageIndex) ? 'active' : ''}" repeat.for="[index, group] of content | sort:sortBy:sortDirection | groupTo:limitPerPage | trimGroup:trimGroupLimit:currentPageIndex">
+                <div repeat.for="item of group">
+                    <template part="paged-content-list-item" replaceable></template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

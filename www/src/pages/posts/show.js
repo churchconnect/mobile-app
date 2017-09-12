@@ -36,8 +36,5 @@ export class PostsShow {
                 })
             }
         }
-
-        // Clear the RSS Post if any.
-        this.rssPostService.clear()
     }
 }

@@ -4,6 +4,7 @@ import {EventAggregator} from "aurelia-event-aggregator";
 import {F7, UserService, MessageService} from "./services/index";
 import environment from "environment";
 import {Endpoint} from "aurelia-api";
+import $ from 'jquery';
 
 @inject(F7, EventAggregator, UserService, Endpoint.of('api'), FetchConfig, MessageService)
 export class App {
@@ -80,8 +81,8 @@ export class App {
 
     configureRouter(config, router) {
         config.title = 'TRBC'
-
         config.addPipelineStep('authorize', AuthenticateStep)
+        config.addPipelineStep('postcomplete', PostCompleteStep)
         config.mapUnknownRoutes({redirect: '#/home'})
 
         //TODO: move this into a Route class?
@@ -120,4 +121,14 @@ export class App {
         this.f7.closePanel()
     }
 
+}
+
+class PostCompleteStep {
+    run(routingContext, next) {
+        // Doing document.querySelector(".page-content") doesn't work. For the life of me I can't understand why.
+        // Go figure the jQuery selector works tho?!?!?
+        $(".page-content").scrollTop(0)
+
+        return next()
+    }
 }

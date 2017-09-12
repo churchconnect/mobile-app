@@ -11,5 +11,4 @@ export class EventsList {
         this.navigationService = navigationService
         this.events = eventService.list()
     }
-
 }

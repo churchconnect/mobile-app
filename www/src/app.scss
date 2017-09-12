@@ -145,6 +145,18 @@ a.icon-link {
     }
 }
 
+.card-wrap {
+    color: #000;
+
+    .home-postGroup-summary > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.page-header {
+    background-size: cover;
+}
+
 .share-link {
     color: color(neutral, dark);
 }
@@ -165,4 +177,8 @@ a.icon-link {
 
 .link-button-solo {
     width: 100%;
+}
+
+.associated-groups-title {
+    margin-top: 40px;
 }

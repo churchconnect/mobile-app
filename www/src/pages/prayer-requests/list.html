@@ -1,14 +1,20 @@
 <template>
+    <require from="../../resources/templates/paged-content"></require>
+
     <page-header title="Prayer Time" image="https://images.contentful.com/og0cae44jgie/4qgZD3p7VYqWsi0Es2uyqi/5c40bcbe1e03bf46d18aa2fbef6f7c5e/prayer-time.png?h=250&">
     </page-header>
 
     <page-body>
         <!--TODO: do the click method binding the right way -->
-        <div repeat.for="prayerRequest of prayerRequests | sort:'createdAt':'descending'" click.trigger="show(prayerRequest)">
-            <arrow-card>
-                <p>${prayerRequest.title}</p>
-            </arrow-card>
-        </div>
+        <paged-content content.bind="prayerRequests" limit-per-page.bind="5" current-page-index.bind="pagedContentMemory.pagedIndex" sort-by.bind="'createdAt'" sort-direction.bind="'descending'">
+            <template replace-part="paged-content-list-item">
+                <div click.trigger="navigationService.go(item)">
+                    <arrow-card>
+                        <p>${item.title}</p>
+                    </arrow-card>
+                </div>
+            </template>
+        </paged-content>
 
         <button click.delegate="navigationService.go('#/prayer-requests/form')">
             Add a Prayer Request

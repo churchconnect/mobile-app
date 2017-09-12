@@ -1,4 +1,5 @@
 import MarkdownIt from "markdown-it";
+import {InlineViewStrategy} from 'aurelia-framework';
 
 export class MarkdownValueConverter {
 
