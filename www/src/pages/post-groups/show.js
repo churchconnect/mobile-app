@@ -1,7 +1,7 @@
 import {inject} from "aurelia-framework";
 import {PostGroupService, MessageService, NavigationService} from "../../services/index";
-import {PagedContentResolver} from "../../resources/templates/paged-content-resolver"
-import {PagedContentMemory} from "../../resources/templates/paged-content-memory"
+import {PagedContentResolver} from "../../resources/templates/paged-content/paged-content-resolver"
+import {PagedContentMemory} from "../../resources/templates/paged-content/paged-content-memory"
 import {Router} from "aurelia-router";
 
 @inject(PostGroupService, Router, MessageService, NavigationService, PagedContentResolver.of(PagedContentMemory))
