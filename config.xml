@@ -12,6 +12,7 @@
     <plugin name="cordova-plugin-inappbrowser" spec="1.5.0" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.0" />
+    <plugin name="nl.x-services.plugins.backgroundaudio" spec="~1.0.1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
