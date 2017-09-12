@@ -31,7 +31,7 @@ export class FeedService extends ResourceService {
 
     cacheFeed(feed) {
         feed.promise.then((res) => {
-            console.log("updating the cache")
+            console.log("Updating Feed Cache")
             this.objectCache.set(Feed.domainClass, res)
             this.objectCache.traverse(res)
             this.lastUpdated = Date.now()
