@@ -37,8 +37,7 @@
             <card-header title.bind="postGroup.title"></card-header>
             <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
             <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
-            <div innerHTML.bind="postGroup.lastPost.summary | markdown" if.bind="postGroup.lastPost" class="home-postGroup-summary"></div>
-            <div innerHTML.bind="postGroup.postGroupsSummary | markdown" if.bind="!postGroup.lastPost && postGroup.postGroups.length > 0" class="home-postGroup-summary"></div>
+            <div innerHTML.bind="postGroup.postGroupsSummary | markdown" if.bind="postGroup.postGroupsSummary" class="home-postGroup-summary"></div>
         </card>
     </a>
 
