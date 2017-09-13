@@ -1,11 +1,20 @@
 <template>
     <require from="../../resources/templates/paged-content/paged-content"></require>
+    <require from="../../resources/templates/filter-content/filter-content"></require>
 
     <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
 
     <page-body>
+        <filter-content
+            extra-fields.bind="postGroup.rssMetadata"
+            data.bind="postGroup"
+            filtered-posts.bind="filteredPosts"
+            if.bind="postGroup.postGroups.length == 0"
+        >
+        </filter-content>
+
         <paged-content class="post-group-paged-content"
-                       content.bind="postGroup.publishedPosts"
+                       content.bind="filteredPosts"
                        limit-per-page.bind="5"
                        current-page-index.bind="pagedContentMemory.pagedIndex"
                        sort-by.bind="'date'"

@@ -1,0 +1,39 @@
+<template>
+    <require from="./filter-content.css" as="scoped"></require>
+
+    <div class="filter-content">
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">
+                                Filter
+                            </div>
+                            <div class="item-input">
+                                <input id="filter-box"
+                                    name="filterBox"
+                                    type="text"
+                                    value.bind="filterBox & debounce:500"
+                                    keyUp.delegate="filterBoxChange($event.target.value)"
+                                    placeholder="Type here to filter this list" />
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">
+                                By
+                            </div>
+                            <div class="item-input">
+                                <select id="filter-type" change.delegate="filterTypeChange($event.target)"></select>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>

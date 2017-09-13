@@ -2,7 +2,7 @@
     <require from="./paged-content.css" as="scoped"></require>
 
     <div class="paged-content">
-        <div class.bind="pageCount === 1 ? 'paged-content-nav disabled' : 'paged-content-nav'">
+        <div class.bind="pageCount === 1 ? 'paged-content-nav disabled' : 'paged-content-nav'" if.bind="content.length > 0">
             <a class="paged-content-nav-previous ${(currentPageIndex === 0) ? 'disabled' : 'active'}" href="javascript:;" click.trigger="showPreviousPage()">
                 <i class="icon icon-back"></i>
             </a>
@@ -17,10 +17,16 @@
         </div>
 
         <div class="paged-content-list">
-            <div class="paged-content-list-container ${(index === currentPageIndex) ? 'active' : ''}" repeat.for="[index, group] of content | sort:sortBy:sortDirection | groupTo:limitPerPage | trimGroup:trimGroupLimit:currentPageIndex">
+            <div class="paged-content-list-container ${(index === currentPageIndex) ? 'active' : ''}"
+                repeat.for="[index, group] of content | sort:sortBy:sortDirection | groupTo:limitPerPage | trimGroup:trimGroupLimit:currentPageIndex"
+                if.bind="content.length > 0">
                 <div repeat.for="item of group">
                     <template part="paged-content-list-item" replaceable></template>
                 </div>
+            </div>
+
+            <div class="paged-content-list-container active" if.bind="content.length === 0">
+                <div style="text-align: center;">Sadly there are no returned posts</div>
             </div>
         </div>
     </div>

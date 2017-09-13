@@ -145,6 +145,38 @@ a.icon-link {
     }
 }
 
+.post-extra-fields {
+    .list-block .list-block-label {
+        margin: 10px 0 15px;
+        font-size: 20px;
+        color: #000;
+    }
+
+    .list-block .item-title {
+        color: #255a72;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .list-block .item-after {
+        max-height: initial;
+        display: block;
+        padding-left: 0;
+        width: 100%;
+        white-space: normal;
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .item-inner {
+        flex-direction: column;
+        align-items: flex-start
+    }
+}
+
 .card-wrap {
     color: #000;
 

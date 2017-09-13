@@ -2,6 +2,28 @@
     <page-body>
         <div if.bind="!iframeUrl">
             <div class="post" class.bind="post.sharingInfo ? 'has-share-link' : ''" if.bind="post.content" innerHTML.bind="post.content | markdown"></div>
+            <div class="post-extra-fields" if.bind="post.extraFields.length > 0">
+                <div class="list-block">
+                    <div class="list-block-label">More Information</div>
+                    <ul>
+                        <li repeat.for="extraField of post.extraFields">
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">
+                                        <span>${extraField.displayName}</span>
+                                    </div>
+                                    <div class="item-after">
+                                        <span if.bind="extraField.attribute.type == 'string'">${extraField.attribute.targetValue}</span>
+                                        <video if.bind="extraField.attribute.type == 'video'" controls>
+                                            <source src.bind="extraField.attribute.targetValue" />
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <share-link if.bind="post.sharingInfo" sharing-info.bind="post.sharingInfo">Share</share-link>
         </div>
         <iframe src.bind="iframeUrl" class="post-iframe" if.bind="iframeUrl"></iframe>
