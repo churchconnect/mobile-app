@@ -4,6 +4,7 @@
         <div class="post" class.bind="event.sharingInfo ? 'has-share-link' : ''" if.bind="event">
             <h1>${event.startDate | date}</h1>
             <div innerHTML.bind="event.description | markdown"></div>
+            <div if.bind="event.location">Location: ${event.location}</div>
         </div>
         <share-link if.bind="event.sharingInfo" sharing-info.bind="event.sharingInfo">Share</share-link>
     </page-body>
