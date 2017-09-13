@@ -22,6 +22,10 @@ export class App {
         this.api = api
         this.fetchConfig = FetchConfig
         this.showFooter = true
+
+        if(window.MobileAccessibility){
+            window.MobileAccessibility.usePreferredTextZoom(true);
+        }
     }
 
     get isAuthenticated() {
