@@ -6,20 +6,22 @@
     </slider>
 
     <!-- EVENTS -->
-    <a if.bind="feed.events" click.delegate="navigationService.go('#/events/list/')" class="card-wrap">
-        <card>
-            <card-header title="Events"></card-header>
+    <card if.bind="feed.events">
+        <card-header title="Events"></card-header>
 
-            <image-embed
-                source="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"
-                full-width="true">
-            </image-embed>
+        <image-embed
+            source="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"
+            full-width="true">
+        </image-embed>
 
-            <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.trigger="navigationService.go(event)">
-                ${event.startDate | date} - ${event.title}
-            </p>
-        </card>
-    </a>
+        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.trigger="navigationService.go(event)">
+            ${event.startDate | date} - ${event.title}
+        </p>
+
+        <card-links>
+            <a click.delegate="navigationService.go('#/events/list/')">See All</a>
+        </card-links>
+    </card>
 
     <!-- GIVING -->
     <card if.bind="feed.givingURL">
