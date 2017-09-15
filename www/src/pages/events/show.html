@@ -1,5 +1,5 @@
 <template>
-    <page-header if.bind="event.title" title.bind="event.title" image="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"></page-header>
+    <page-header if.bind="event.title" title.bind="event.title" image.bind="eventsImageURL"></page-header>
     <page-body>
         <div class="post" class.bind="event.sharingInfo ? 'has-share-link' : ''" if.bind="event">
             <h1>${event.startDate | date}</h1>

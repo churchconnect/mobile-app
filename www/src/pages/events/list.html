@@ -11,9 +11,7 @@
     >
     </filter-content>
 
-    <page-header title="Events"
-                 image="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg">
-    </page-header>
+    <page-header title="Events" image.bind="eventsImageURL"></page-header>
 
     <!--TODO: do the click method binding the right way -->
     <div repeat.for="event of filteredEvents | sort:'startDate':'ascending' | filterOutPastItems" click.trigger="navigationService.go(event)">
