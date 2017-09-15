@@ -189,6 +189,15 @@ a.icon-link {
     }
 }
 
+.home-event-list {
+    margin-top: 1em;
+    width: 100%;
+    text-align: left;
+
+    p:first-child { margin-top: 0; }
+    p:last-child { margin-bottom: 0; }
+}
+
 .page-header {
     background-size: cover;
 }
