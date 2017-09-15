@@ -1,16 +1,6 @@
 <template>
     <require from="../../resources/templates/filter-content/filter-content"></require>
 
-    <filter-content
-        extra-fields.bind="[]"
-        defaults.bind="['All Events', 'This Week']"
-        data.bind="events"
-        type.bind="'events'"
-        filtered-posts.bind="filteredEvents"
-        if.bind="events.length > 0"
-    >
-    </filter-content>
-
     <page-header title="Events" image.bind="eventsImageURL"></page-header>
 
     <page-body>
