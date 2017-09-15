@@ -17,7 +17,7 @@
                     <div class="navbar">
                         <div class="navbar-inner">
                             <div class="left">
-                                <a href="#" class="link icon-only" click.delegate="router.navigateBack()" click.trigger="showFooter = true" class.bind="router.currentInstruction.config.name === 'home' ? 'hidden' : ''">
+                                <a href="#" class="link back-button icon-only" click.delegate="router.navigateBack()" click.trigger="showFooter = true" class.bind="router.currentInstruction.config.name === 'home' ? 'hidden' : ''">
                                     <i class="icon icon-back"></i>
                                 </a>
                             </div>
@@ -25,11 +25,7 @@
                             <div class="center sliding">TRBC</div>
 
                             <div class="right">
-                                <a href="#" data-panel="right" class="link open-panel hamburger-icon">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </a>
+
                             </div>
                         </div>
                     </div>
