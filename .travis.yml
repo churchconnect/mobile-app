@@ -8,6 +8,7 @@ cache:
 before_install:
   - npm install -g aurelia-cli
   - pip install requests
+  - pip install bs4
 
 script:
   - ci/build_app.sh
