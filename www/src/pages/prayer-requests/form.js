@@ -3,7 +3,7 @@ import {ValidationRules, ValidationController} from 'aurelia-validation';
 import {PrayerRequestService, MessageService} from '../../services/index'
 import {Router} from 'aurelia-router'
 import {PrayerRequest} from "../../models/prayer-request";
-
+import {ConfigurationHolder} from "../../resources/configuration-holder";
 
 ValidationRules
     .ensure('title').required().withMessage("Summary is required")
@@ -11,14 +11,16 @@ ValidationRules
     .ensure('description').required().withMessage("Prayer Request is required")
     .on(PrayerRequest)
 
-@inject(PrayerRequestService, NewInstance.of(ValidationController), MessageService, Router)
+@inject(PrayerRequestService, NewInstance.of(ValidationController), MessageService, Router, ConfigurationHolder)
 export class PrayerRequestsForm {
 
-    constructor(prayerRequestService, validationController, messageService, router) {
+    constructor(prayerRequestService, validationController, messageService, router, configurationHolder) {
         this.prayerRequestService = prayerRequestService
         this.validationController = validationController
         this.messageService = messageService
         this.router = router
+
+        this.prayerTimeImageURL = configurationHolder.get('prayerTimeImageURL')
 
         this.prayerRequest = new PrayerRequest()
         this.submitting = false
