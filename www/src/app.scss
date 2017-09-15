@@ -219,6 +219,37 @@ a.icon-link {
     }
 }
 
+.search-icon-wrap {
+    background: #fff;
+    position: absolute;
+    border-radius: 3px;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translate(-50%, -50%)
+    }
+}
+
+filter-content {
+    width: 100%;
+}
+
+.page-header-wrap {
+    position: relative;
+}
+
+.filter-content {
+    .list-block {
+        margin-top: 0;
+    }
+}
+
 .link-button-solo {
     width: 100%;
 }
