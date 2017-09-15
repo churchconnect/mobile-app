@@ -211,6 +211,14 @@ a.icon-link {
     }
 }
 
+.post-extra-fields {
+    .list-block {
+        margin-top: 0;
+
+        ul:before {content: none}
+    }
+}
+
 .link-button-solo {
     width: 100%;
 }
