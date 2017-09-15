@@ -28,5 +28,6 @@ export default {
         {label: 'Home', href: '#/home', icon: 'home'},
         {label: 'Giving', href: 'https://pushpay.com/p/thomasroadbaptistchurch', icon: 'heart'},
         {label: 'Calendar', href: '#/events/list', icon: 'calendar'},
+        {label: 'Contact', href: '#/contact', icon: 'phone'}
     ]
 };
