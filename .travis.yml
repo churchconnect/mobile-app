@@ -13,17 +13,21 @@ script:
   - ci/build_app.sh
 
 after_success:
+  - file_prefix="churchconnect_mobile-app"
   - commit_hash=`git rev-parse --short HEAD`
   - label="`date +%Y%m%d%H%M-$commit_hash`"
-  - mv android.apk churchconnect_mobile-app_android-$label.apk
-  - mv iphone.ipa churchconnect_mobile-app_ios-$label.ipa
-  - mv phonegap_code.zip churchconnect_mobile-app_phonegap_src-$label.zip
-  - ci/generate_manifest.py https://s3.amazonaws.com/$ARTIFACTS_BUCKET/mobile-app/unstable/churchconnect_mobile-app_ios-$label.ipa
-  - mkdir churchconnect_mobile-app_ios-$label
-  - mv manifest.plist churchconnect_mobile-app_ios-$label/manifest.plist
+  - mv android.apk ${file_prefix}_android-$label.apk
+  - mv iphone.ipa ${file_prefix}_ios-$label.ipa
+  - mv phonegap_code.zip ${file_prefix}_phonegap_src-$label.zip
+  - ipa_url="https://s3.amazonaws.com/$ARTIFACTS_BUCKET/mobile-app/unstable/${file_prefix}_ios-$label.ipa"
+  - ci/generate_manifest.py $ipa_url
+  - ci/generate_manifest_link.py $label $ipa_url
+  - mkdir ${file_prefix}_ios-$label
+  - mv manifest.plist ${file_prefix}_ios-$label/manifest.plist
+  - mv build_link.html ${file_prefix}_ios-$label/index.html
 
 addons:
   artifacts:
-    paths: $(ls *.apk *.zip *.ipa churchconnect_mobile-app_ios-$label | tr "\n" ":")
+    paths: $(ls *.apk *.zip *.ipa ${file_prefix}_ios-$label/* | tr "\n" ":")
     target_paths: mobile-app/unstable/
     permissions: public-read
