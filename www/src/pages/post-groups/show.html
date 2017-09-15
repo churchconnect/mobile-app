@@ -2,13 +2,21 @@
     <require from="../../resources/templates/paged-content/paged-content"></require>
     <require from="../../resources/templates/filter-content/filter-content"></require>
 
-    <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
+    <div class="page-header-wrap">
+        <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
+
+        <div class="search-icon-wrap">
+            <i class="icon fa fa-search"></i>
+        </div>
+    </div>
 
     <page-body>
         <filter-content
             extra-fields.bind="postGroup.rssMetadata"
             data.bind="postGroup"
             filtered-posts.bind="filteredPosts"
+            class="accordion-target"
+            style="display: none;"
             if.bind="postGroup.postGroups.length == 0"
         >
         </filter-content>

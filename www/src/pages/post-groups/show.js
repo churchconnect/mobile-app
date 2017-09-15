@@ -4,23 +4,30 @@ import {PagedContentResolver} from "../../resources/templates/paged-content/page
 import {PagedContentMemory} from "../../resources/templates/paged-content/paged-content-memory"
 import {FilterContentResolver} from "../../resources/templates/filter-content/filter-content-resolver"
 import {FilterContentMemory} from "../../resources/templates/filter-content/filter-content-memory"
+import {AccordionService} from "../../services/accordion-service"
 import {Router} from "aurelia-router";
 
-@inject(PostGroupService, Router, MessageService, NavigationService, PagedContentResolver.of(PagedContentMemory), FilterContentResolver.of(FilterContentMemory))
+@inject(PostGroupService, Router, MessageService, NavigationService, PagedContentResolver.of(PagedContentMemory), FilterContentResolver.of(FilterContentMemory), AccordionService)
 export class PostGroupsShow {
 
     @bindable postGroup
     @bindable({defaultBindingMode: bindingMode.twoWay}) filteredPosts = []
     pagedContentMemory
+    accordionService
     filterContentMemory
 
-    constructor(postGroupService, router, messageService, navigationService, pagedContentResolver, filterContentResolver) {
+    constructor(postGroupService, router, messageService, navigationService, pagedContentResolver, filterContentResolver, accordionService) {
         this.postGroupService = postGroupService
         this.router = router
         this.messageService = messageService
         this.navigationService = navigationService
+        this.accordionService = accordionService
         this.pagedContentResolver = pagedContentResolver
         this.filterContentResolver = filterContentResolver
+    }
+
+    attached() {
+        this.accordionService.setup()
     }
 
     activate(params) {

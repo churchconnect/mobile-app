@@ -21,6 +21,9 @@ export class EventsShow {
             return
         }
 
-        this.event = this.eventService.findOne(params.id)
+        this.event = this.eventService.findOne(params.id);
+        this.event.promise.then((event) => {
+            event.location = event.location.replace(/\\/g, '');
+        })
     }
 }
