@@ -21,9 +21,11 @@ after_success:
   - mv android.apk ${file_prefix}_android-$label.apk
   - mv iphone.ipa ${file_prefix}_ios-$label.ipa
   - mv phonegap_code.zip ${file_prefix}_phonegap_src-$label.zip
-  - ipa_url="https://s3.amazonaws.com/$ARTIFACTS_BUCKET/mobile-app/unstable/${file_prefix}_ios-$label.ipa"
+  - s3base_url="https://s3.amazonaws.com/$ARTIFACTS_BUCKET/mobile-app/unstable"
+  - ipa_url="$s3base_url/${file_prefix}_ios-$label.ipa"
+  - manifest_url="$s3base_url/${file_prefix}_ios-$label/manifest.plist"
   - ci/generate_manifest.py $ipa_url
-  - ci/generate_manifest_link.py $label $ipa_url
+  - ci/generate_manifest_link.py $label $manifest_url
   - mkdir ${file_prefix}_ios-$label
   - mv manifest.plist ${file_prefix}_ios-$label/manifest.plist
   - mv build_link.html ${file_prefix}_ios-$label/index.html
