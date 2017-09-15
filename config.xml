@@ -60,6 +60,7 @@
         <allow-intent href="itms-apps:*"/>
         <preference name="ShowSplashScreenSpinner" value="false"/>
         <preference name="FadeSplashScreenDuration" value="0"/>
+        <preference name="DisallowOverscroll" value="true" />
 
         <icon src="res/ios/Icon-167.png" width="167" height="167" platform="ios"/>
         <icon src="res/ios/Icon-40.png" width="40" height="40" platform="ios"/>

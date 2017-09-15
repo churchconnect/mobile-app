@@ -18,9 +18,12 @@ after_success:
   - mv android.apk churchconnect_mobile-app_android-$label.apk
   - mv iphone.ipa churchconnect_mobile-app_ios-$label.ipa
   - mv phonegap_code.zip churchconnect_mobile-app_phonegap_src-$label.zip
+  - ci/generate_manifest.py https://s3.amazonaws.com/$ARTIFACTS_BUCKET/mobile-app/unstable/churchconnect_mobile-app_ios-$label.ipa
+  - mkdir churchconnect_mobile-app_ios-$label
+  - mv manifest.plist churchconnect_mobile-app_ios-$label/manifest.plist
 
 addons:
   artifacts:
-    paths: $(ls *.apk *.zip *.ipa | tr "\n" ":")
+    paths: $(ls *.apk *.zip *.ipa churchconnect_mobile-app_ios-$label | tr "\n" ":")
     target_paths: mobile-app/unstable/
     permissions: public-read

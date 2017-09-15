@@ -7,14 +7,17 @@
 
     <!-- EVENTS -->
     <card if.bind="feed.events">
-        <card-header title="Events"></card-header>
+        <card-header title="Events"
+            click.delegate="navigationService.go('#/events/list/')">
+        </card-header>
 
         <image-embed
             source="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"
-            full-width="true">
+            full-width="true"
+            click.delegate="navigationService.go('#/events/list/')">
         </image-embed>
 
-        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.trigger="navigationService.go(event)">
+        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.delegate="navigationService.go(event)">
             ${event.startDate | date} - ${event.title}
         </p>
 
@@ -32,14 +35,12 @@
     </card>
 
     <!-- POST GROUPS -->
-    <a click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed" class="card-wrap">
-        <card>
-            <card-header title.bind="postGroup.title"></card-header>
-            <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
-            <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
-            <div innerHTML.bind="postGroup.postGroupsSummary | markdown" if.bind="postGroup.postGroupsSummary" class="home-postGroup-summary"></div>
-        </card>
-    </a>
+    <card click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed">
+        <card-header title.bind="postGroup.title"></card-header>
+        <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
+        <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
+        <div innerHTML.bind="postGroup.postGroupsSummary | markdown" if.bind="postGroup.postGroupsSummary" class="home-postGroup-summary"></div>
+    </card>
 
     <!-- PRAYER TIME -->
     <card if.bind="feed.hasPrayerRequests">
