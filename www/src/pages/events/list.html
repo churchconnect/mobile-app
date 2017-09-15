@@ -1,9 +1,17 @@
 <template>
     <require from="../../resources/templates/filter-content/filter-content"></require>
 
-    <page-header title="Events"
-                 image="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg">
-    </page-header>
+    <filter-content
+        extra-fields.bind="[]"
+        defaults.bind="['All Events', 'This Week']"
+        data.bind="events"
+        type.bind="'events'"
+        filtered-posts.bind="filteredEvents"
+        if.bind="events.length > 0"
+    >
+    </filter-content>
+
+    <page-header title="Events" image.bind="eventsImageURL"></page-header>
 
     <page-body>
 

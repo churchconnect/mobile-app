@@ -12,7 +12,8 @@
         </card-header>
 
         <image-embed
-            source="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg"
+            if.bind="feed.eventsImageURL"
+            source.bind="feed.eventsImageURL"
             full-width="true"
             click.delegate="navigationService.go('#/events/list/')">
         </image-embed>
@@ -43,11 +44,16 @@
 
     <!-- PRAYER TIME -->
     <card if.bind="feed.hasPrayerRequests">
-        <card-header title="Prayer Time"></card-header>
+        <card-header
+            title="Prayer Time"
+            click.delegate="navigationService.go('#/prayer-requests/list')">
+        </card-header>
 
         <image-embed
-            source="https://images.contentful.com/og0cae44jgie/4qgZD3p7VYqWsi0Es2uyqi/5c40bcbe1e03bf46d18aa2fbef6f7c5e/prayer-time.png?h=250&"
-            full-width="true">
+            if.bind="feed.prayerTimeImageURL"
+            source.bind="feed.prayerTimeImageURL"
+            full-width="true"
+            click.delegate="navigationService.go('#/prayer-requests/list')">
         </image-embed>
 
         <p>Submit a Prayer Request to the Pastors.</p>
