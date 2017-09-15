@@ -11,3 +11,4 @@ build
 *.ipa
 *.zip
 plugins
+manifest.plist
