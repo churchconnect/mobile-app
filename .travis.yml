@@ -9,7 +9,7 @@ before_install:
   - npm install -g aurelia-cli
   - pip install requests
   - pip install beautifulsoup4 --user
-  - pip install lxml
+  - pip install lxml --user
 
 script:
   - ci/build_app.sh
