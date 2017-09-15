@@ -1,10 +1,22 @@
 <template>
+    <require from="../../resources/templates/filter-content/filter-content"></require>
+
+    <filter-content
+        extra-fields.bind="[]"
+        defaults.bind="['All Events', 'This Week']"
+        data.bind="events"
+        type.bind="'events'"
+        filtered-posts.bind="filteredEvents"
+        if.bind="events.length > 0"
+    >
+    </filter-content>
+
     <page-header title="Events"
                  image="https://images.contentful.com/og0cae44jgie/2cYan5B7X2yyu248mQUkCS/fec91fc74be1dd4180a193f483f640da/events-header.jpg">
     </page-header>
 
     <!--TODO: do the click method binding the right way -->
-    <div repeat.for="event of events | sort:'startDate':'ascending' | filterOutPastItems" click.trigger="navigationService.go(event)">
+    <div repeat.for="event of filteredEvents | sort:'startDate':'ascending' | filterOutPastItems" click.trigger="navigationService.go(event)">
         <arrow-card>
             <div class="one-line-card-content">${event.startDate | date} - ${event.title}</div>
         </arrow-card>
