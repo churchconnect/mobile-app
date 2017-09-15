@@ -2,14 +2,8 @@ import {inject, NewInstance} from 'aurelia-framework'
 import {ValidationRules, ValidationController} from 'aurelia-validation';
 import {PrayerRequestService, MessageService} from '../../services/index'
 import {Router} from 'aurelia-router'
+import {PrayerRequest} from "../../models/prayer-request";
 
-//TODO: put this in models.
-class PrayerRequest {
-    title = ""
-    author = ""
-    description = ""
-    secret = true
-}
 
 ValidationRules
     .ensure('title').required().withMessage("Summary is required")
