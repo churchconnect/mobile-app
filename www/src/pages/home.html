@@ -17,13 +17,12 @@
             click.delegate="navigationService.go('#/events/list/')">
         </image-embed>
 
-        <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.delegate="navigationService.go(event)">
-            ${event.startDate | date} - ${event.title}
-        </p>
+        <div class="home-event-list">
+            <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.delegate="navigationService.go(event)">
+                ${event.startDate | date} - ${event.title}
+            </p>
+        </div>
 
-        <card-links>
-            <a click.delegate="navigationService.go('#/events/list/')">See All</a>
-        </card-links>
     </card>
 
     <!-- GIVING -->
@@ -35,7 +34,7 @@
     </card>
 
     <!-- POST GROUPS -->
-    <card click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed">
+    <card click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed" class="card-wrap">
         <card-header title.bind="postGroup.title"></card-header>
         <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
         <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
