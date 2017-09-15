@@ -5,6 +5,7 @@ import sys
 
 if len(sys.argv) < 2:
     print "Please specify url of .ipa file as first argument to this script."
+    exit()
 
 ipa_url = sys.argv[1]
 
