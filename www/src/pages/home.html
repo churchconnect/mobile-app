@@ -1,7 +1,7 @@
 <template>
     <slider show-controls="true" loop="true" if.bind="feed.bannerImages" autoplay="5000">
         <slide repeat.for="bannerImage of feed.bannerImages" aspect-ratio=".5625">
-            <img src.bind="bannerImage.image.url" click.delegate="navigationService.go(bannerImage.link.url)">
+            <img src.bind="bannerImage.image.url" click.delegate="navigationService.go(bannerImage.link)">
         </slide>
     </slider>
 

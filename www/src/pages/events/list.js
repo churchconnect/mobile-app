@@ -22,7 +22,7 @@ export class EventsList {
     }
 
     loadEvents() {
-        this.events = eventService.list()
+        this.events = this.eventService.list()
         this.events.promise.then((events) => this.filteredEvents = events)
     }
 }

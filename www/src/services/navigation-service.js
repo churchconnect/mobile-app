@@ -1,7 +1,7 @@
 import {inject} from "aurelia-framework";
 import {Router} from "aurelia-router";
 import {RssPostService} from "./rss-post-service";
-import { Event, Post, PostGroup, PrayerRequest } from 'models/index'
+import { Event, Link, Post, PostGroup, PrayerRequest } from 'models/index'
 
 
 @inject(Router, RssPostService)
@@ -37,7 +37,9 @@ export class NavigationService {
     }
 
     goToObjectLink(object) {
-        if (object instanceof PostGroup) {
+        if (object instanceof Link) {
+            this.goToLink(object)
+        } else if (object instanceof PostGroup) {
             this.goToPostGroup(object)
 
         } else if (object instanceof Event) {
@@ -56,6 +58,20 @@ export class NavigationService {
 
     isInternalUrl(where) {
         return where.substring(0, 2).toLowerCase() === '#/'
+    }
+
+    /**
+     * Navigates to a Link object
+     * @param link
+     */
+    goToLink(link) {
+        if (link.url) {
+            this.goToUrl(link.url)
+        } else if (link.post) {
+            this.goToPost(link.post)
+        } else {
+            console.log("Cannot navigate to", object)
+        }
     }
 
     goToEvent(event) {
