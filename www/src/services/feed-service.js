@@ -1,17 +1,19 @@
 import {inject} from "aurelia-framework";
+import {EventAggregator} from "aurelia-event-aggregator";
 import {Endpoint} from "aurelia-api";
 import {ResourceService} from "./resource-service";
 import {Feed} from "models/index"
 import {ObjectCache} from "./object-cache"
 
-@inject(Endpoint.of('api'), ObjectCache)
+@inject(Endpoint.of('api'), ObjectCache, EventAggregator)
 export class FeedService extends ResourceService {
 
     lastUpdated
 
-    constructor(api, objectCache) {
+    constructor(api, objectCache, EventAggregator) {
         super(api, Feed)
         this.objectCache = objectCache
+        this.eventAggregator = EventAggregator
 
         setInterval(() => this.refreshCache(), 60000)
     }
@@ -35,11 +37,14 @@ export class FeedService extends ResourceService {
             this.objectCache.set(Feed.domainClass, res)
             this.objectCache.traverse(res)
             this.lastUpdated = Date.now()
+            this.eventAggregator.publish("feed.cache.updated")
         })
     }
 
     refreshCache() {
-        if (Date.now() - this.lastUpdated > 600000) {
+        console.log("Checking Feed Cache for freshness")
+        if (Date.now() - this.lastUpdated > 30000) {
+            console.log("Refreshing Feed")
             this.cacheFeed(super.findOne())
         }
     }
