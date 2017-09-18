@@ -5,7 +5,7 @@
     <div class="page-header-wrap">
         <page-header if.bind="postGroup.title" title.bind="postGroup.title" image.bind="postGroup.media.url"></page-header>
 
-        <div class="search-icon-wrap">
+        <div class="search-icon-wrap" if.bind="postGroup.postGroups.length === 0">
             <i class="icon fa fa-search"></i>
         </div>
     </div>
