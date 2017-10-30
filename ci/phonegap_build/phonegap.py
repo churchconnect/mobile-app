@@ -72,6 +72,26 @@ class API:
 
         return 'locked' in response.json() and response.json()['locked'] == False
 
+    # Uploads the provided zip file and uses the given key ids to sign the application.
+    def build_code(self, file, android_key_id, ios_key_id):
+        keys = {
+            "keys": {
+                Platform.ANDROID: { "id": android_key_id},
+                Platform.IOS: { "id": ios_key_id }
+            }
+        }
+
+        files = {
+            'file': (file.name, file),
+            'data': (None, json.dumps(keys)),
+        }
+
+        response = requests.put(self.app_url(), files=files)
+
+        if self.debug: print json.dumps(response.json(), indent=4)
+
+        return response.status_code == requests.codes.ok
+
     def upload_code(self, file):
         response = requests.put(self.app_url(), files={'file': file})
         if self.debug: print json.dumps(response.json(), indent=4)

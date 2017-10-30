@@ -42,8 +42,8 @@ if __name__ == '__main__':
         print 'Failed to unlock iOS signing key'
         exit()
 
-    if not api.upload_code(args.zipfile):
-        print 'Failed to upload code to phonegap'
+    if not api.build_code(args.zipfile, android_key['id'], ios_key['id']):
+        print 'Failed to trigger build correctly'
         exit()
 
     print 'Android Build downloaded successfully' if api.save_build(phonegap.Platform.ANDROID, 'android.apk') else 'Failed to download Android Build'
