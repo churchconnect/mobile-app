@@ -28,4 +28,3 @@ if grep "$(git rev-parse --abbrev-ref HEAD)" .production_branches; then
 else
     ci/phonegap_build/build.py --development $ZIP_FILENAME
 fi
-

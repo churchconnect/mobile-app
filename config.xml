@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.sharptop.church.connectApp" version="16.11.12" xmlns="http://www.w3.org/ns/widgets">
+<widget id="co.sharptop.church.connectApp" version="17.10.31" xmlns="http://www.w3.org/ns/widgets">
 
     <name>ChurchConnect</name>
 
     <description>
-        A mobile app to connect churches with their members.
+        ChurchConnect is an open-source church app built through the cooperation of churches and Sharptop Software Co.
     </description>
 
     <author email="info@churchconnectapp.org" href="http://churchconnectapp.org">
-        CurchConnect App
+        ChurchConnect App
     </author>
 
     <content src="index.html" />
@@ -54,6 +54,14 @@
         <splash src="res/android/drawable-xhdpi/screen.png" platform="android" qualifier="xhdpi" />
         <splash src="res/android/drawable-xxhdpi/screen.png" platform="android" qualifier="xxhdpi" />
         <splash src="res/android/drawable-xxxhdpi/screen.png" platform="android" qualifier="xxxhdpi" />
+
+        <splash src="res/android/drawable-land/screen.png" platform="android" />
+        <splash src="res/android/drawable-land-hdpi/screen.png" platform="android" qualifier="hdpi" />
+        <splash src="res/android/drawable-land-ldpi/screen.png" platform="android" qualifier="ldpi" />
+        <splash src="res/android/drawable-land-mdpi/screen.png" platform="android" qualifier="mdpi" />
+        <splash src="res/android/drawable-land-xhdpi/screen.png" platform="android" qualifier="xhdpi" />
+        <splash src="res/android/drawable-land-xxhdpi/screen.png" platform="android" qualifier="xxhdpi" />
+        <splash src="res/android/drawable-land-xxxhdpi/screen.png" platform="android" qualifier="xxxhdpi" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*"/>
