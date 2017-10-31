@@ -17,4 +17,9 @@ zip -r $ZIP_FILENAME \
     www/node_modules/font-awesome \
     www/node_modules/framework7/dist
 
-ci/phonegap_build/build.py $ZIP_FILENAME
+if [ "$(git rev-parse --abbrev-ref HEAD)" == "development" ]; then
+    ci/phonegap_build/build.py --development $ZIP_FILENAME
+else
+    ci/phonegap_build/build.py $ZIP_FILENAME
+fi
+
