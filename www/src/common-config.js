@@ -12,7 +12,7 @@ export default {
     routes: [
         {name: 'home', title: 'Home', nav: true, icon: 'home', auth: false},
         // {name: 'settings', title: 'My Settings', nav: true, icon: 'user', auth: true},
-        {name: 'https://pushpay.com/p/thomasroadbaptistchurch', title: 'Giving', nav: true, icon: 'heart', auth: false},
+        {name: 'http://www.churchconnectapp.org/giving-back/', title: 'Giving', nav: true, icon: 'heart', auth: false},
         {name: 'contact', title: 'Contact', nav: true, icon: 'phone', auth: false},
         {name: 'login', title: 'Login', auth: false},
         {name: 'login/:token', title: 'Login', auth: false},
