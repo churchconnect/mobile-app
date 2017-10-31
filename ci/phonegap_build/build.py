@@ -4,27 +4,48 @@ import phonegap
 import os
 import argparse
 
+class Environment:
+
+    def __init__(self, development_mode = False, prefix = "PHONEGAP_", dev_prefix = "DEV_"):
+        self.development_mode = development_mode
+        self.prefix = prefix
+        self.dev_prefix = dev_prefix
+
+    def __str__(self):
+        return ', '.join(self.__dir__())
+
+    def __getattr__(self, name):
+        if self.development_mode and self.make_dev_key(name) in os.environ:
+            return os.environ[self.make_dev_key(name)]
+
+        return os.environ[self.make_key(name)]
+
+    def __dir__(self):
+        return dir(super(object, self)) + [ self.unmake_key(k) for k in os.environ.keys() if self.prefix in k ]
+
+    def make_dev_key(self, name):
+        return self.dev_prefix + self.make_key(name)
+
+    def make_key(self, name):
+        return self.prefix + name.upper()
+
+    def unmake_key(self, key):
+        return key.replace(self.dev_prefix, "").replace(self.prefix, "").lower()
+
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('zipfile', type=argparse.FileType('rb'))
+    parser.add_argument('--development', action="store_true")
     args = parser.parse_args()
 
-    phonegap_token = os.environ['PHONEGAP_TOKEN']
-    app_id = os.environ['PHONEGAP_APP_ID']
+    env = Environment(args.development)
 
-    android_key = {
-        'id': os.environ['PHONEGAP_ANDROID_KEY_ID'],
-        'password': os.environ['PHONEGAP_ANDROID_KEY_PASSWORD'],
-        'keystore_pw': os.environ['PHONEGAP_ANDROID_KEYSTORE_PASSWORD']
-    }
+    ios_app_filename = 'iphone.ipa'
+    android_app_filename = 'android.apk'
 
-    ios_key =  {
-        'id': os.environ['PHONEGAP_IOS_KEY_ID'],
-        'password': os.environ['PHONEGAP_IOS_KEY_PASSWORD']
-    }
-
-    api = phonegap.API(app_id, phonegap_token)
+    api = phonegap.API(env.app_id, env.token)
 
     if not api.check_auth_token():
         print 'The auth_token you provided does not give access to Phonegap Build.'
@@ -34,18 +55,24 @@ if __name__ == '__main__':
         print 'The auth_token you provided does not give access to the target app.'
         exit()
 
-    if not api.unlock_signing_key(android_key['id'], phonegap.Platform.ANDROID, android_key['password'], android_key['keystore_pw']):
+    if not api.unlock_signing_key(env.android_key_id, phonegap.Platform.ANDROID, env.android_key_password, env.android_keystore_password):
         print 'Failed to unlock Android signing key'
         exit()
 
-    if not api.unlock_signing_key(ios_key['id'], phonegap.Platform.IOS, ios_key['password']):
+    if not api.unlock_signing_key(env.ios_key_id, phonegap.Platform.IOS, env.ios_key_password):
         print 'Failed to unlock iOS signing key'
         exit()
 
-    if not api.build_code(args.zipfile, android_key['id'], ios_key['id']):
+    if not api.build_code(args.zipfile, env.android_key_id, env.ios_key_id):
         print 'Failed to trigger build correctly'
         exit()
 
-    print 'Android Build downloaded successfully' if api.save_build(phonegap.Platform.ANDROID, 'android.apk') else 'Failed to download Android Build'
+    if api.save_build(phonegap.Platform.ANDROID, android_app_filename):
+        print 'Android Build downloaded successfully'
+    else:
+        print 'Failed to download Android Build'
 
-    print 'iOS Build downloaded successfully' if api.save_build(phonegap.Platform.IOS, 'iphone.ipa') else 'Failed to download iOS Build'
+    if api.save_build(phonegap.Platform.IOS, ios_app_filename):
+        print 'iOS Build downloaded successfully'
+    else:
+        print 'Failed to download iOS Build'
