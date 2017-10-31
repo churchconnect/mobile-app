@@ -45,6 +45,6 @@ export class Home {
     }
 
     give() {
-        this.navigationService.go('https://pushpay.com/p/thomasroadbaptistchurch')
+        this.navigationService.go('http://www.churchconnectapp.org/giving-back/')
     }
 }

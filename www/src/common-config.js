@@ -26,7 +26,7 @@ export default {
     ],
     tabs: [
         {label: 'Home', href: '#/home', icon: 'home'},
-        {label: 'Giving', href: 'https://pushpay.com/p/thomasroadbaptistchurch', icon: 'heart'},
+        {label: 'Giving', href: 'http://www.churchconnectapp.org/giving-back/', icon: 'heart'},
         {label: 'Calendar', href: '#/events/list', icon: 'calendar'},
         {label: 'Contact', href: '#/contact', icon: 'phone'}
     ]
