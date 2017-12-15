@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if grep "$(git rev-parse --abbrev-ref HEAD)" .production_branches; then
+if grep "$TRAVIS_BRANCH" .production_branches; then
     echo "production build"
 else
     echo "development build"
@@ -23,7 +23,7 @@ zip -r $ZIP_FILENAME \
     www/node_modules/font-awesome \
     www/node_modules/framework7/dist
 
-if grep "$(git rev-parse --abbrev-ref HEAD)" .production_branches; then
+if grep "$TRAVIS_BRANCH" .production_branches; then
     ci/phonegap_build/build.py $ZIP_FILENAME
 else
     ci/phonegap_build/build.py --development $ZIP_FILENAME
