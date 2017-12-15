@@ -7,6 +7,7 @@ $fa-font-path: "./fonts";
 @import "./node_modules/bourbon/app/assets/stylesheets/_bourbon";
 @import "./node_modules/font-awesome/scss/font-awesome";
 @import "./node_modules/aurelia-ui-components/dist/components";
+@import "./resources/templates/paged-content/paged-content.scss";
 @import "./fonts/fonts";
 
 body {
