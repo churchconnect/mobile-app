@@ -1,14 +1,13 @@
 export default {
     debug: false,
     testing: false,
-    apiUrl: 'http://church-api-dev2.us-east-1.elasticbeanstalk.com/',
-    // apiUrl: 'http://localhost:8080/',
+    apiUrl: '',
     endpoint: 'api',
     configureEndpoints: ['api'],
     loginUrl: 'api/login',
     authHeader: 'X-Auth-Token',
     authTokenType: '',
-    googleMapsApiKey: 'AIzaSyAMsiX7kkDavpMaDe5q5twCrhgMnOFfPfw',
+    googleMapsApiKey: '',
     routes: [
         {name: 'home', title: 'Home', nav: true, icon: 'home', auth: false},
         // {name: 'settings', title: 'My Settings', nav: true, icon: 'user', auth: true},
