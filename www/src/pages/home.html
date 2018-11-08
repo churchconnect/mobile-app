@@ -4,7 +4,8 @@
         autoplay="5000"
         show-controls="true">
         <slide
-            repeat.for="bannerImage of feed.bannerImages">
+            repeat.for="bannerImage of feed.bannerImages"
+            aspect-ratio=".5625">
             <img
                 src.bind="bannerImage.image.url"
                 click.delegate="navigationService.go(bannerImage.link)">
