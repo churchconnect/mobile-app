@@ -15,7 +15,7 @@ export class EventsList {
         this.router = router
         this.navigationService = navigationService
         this.eventAggregator = EventAggregator
-        this.defaultEventsFilter = "This Week";
+        this.defaultEventsFilter = "this_week";
 
         this.eventsImageURL = configurationHolder.get('eventsImageURL');
 
@@ -25,6 +25,6 @@ export class EventsList {
 
     loadEvents() {
         this.events = this.eventService.list()
-        this.events.promise.then((events) => this.filteredEvents = FilterContent.filterEvents(events, this.defaultEventsFilter))
+        this.events.promise.then((events) => this.filteredEvents = FilterContent.filterEvents(events, false))
     }
 }

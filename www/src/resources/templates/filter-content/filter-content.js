@@ -5,6 +5,7 @@ import moment from "moment";
 @inject(Element, Router)
 export class FilterContent {
 
+    @bindable allKey = "all_events"
     @bindable context
     @bindable searchValue
     @bindable defaults = ["title", "summary", "content"]
@@ -41,7 +42,14 @@ export class FilterContent {
         let fields = new Map()
 
         this.defaults.forEach(defaultItem => {
-            fields.set(defaultItem, defaultItem.charAt(0).toUpperCase() + defaultItem.slice(1))
+            let multiWord = defaultItem.split("_");
+
+            if(multiWord.length > 0) {
+                multiWord.forEach((word, index) => multiWord[index] = word.charAt(0).toUpperCase() + word.slice(1));
+                fields.set(defaultItem, multiWord.join(" "));
+            } else {
+                fields.set(defaultItem, defaultItem.charAt(0).toUpperCase() + defaultItem.slice(1))
+            }
         })
 
         if(this.parsedExtraFields.length > 0) {
@@ -88,14 +96,14 @@ export class FilterContent {
             this.filteredPosts = FilterContent.filterPosts(searchValue, posts, context)
         } else {
             let events = this.data
-            this.filteredPosts = FilterContent.filterEvents(events, context)
+            this.filteredPosts = FilterContent.filterEvents(events, context === this.allKey)
         }
     }
 
-    static filterEvents(events, selected) {
+    static filterEvents(events, all) {
         let filteredEvents = []
 
-        if(selected === "All Events") {
+        if(all) {
             filteredEvents = events
         } else {
             events.forEach(event => {
