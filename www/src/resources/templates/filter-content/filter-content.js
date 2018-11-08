@@ -27,7 +27,7 @@ export class FilterContent {
     extraFieldsBound() {
         let out = []
 
-        if(this.extraFields.length > 0) {
+        if(this.extraFields && this.extraFields.length > 0) {
             let extraFields = JSON.parse(this.extraFields).extraFields
 
             if(extraFields) {
@@ -52,7 +52,7 @@ export class FilterContent {
             }
         })
 
-        if(this.parsedExtraFields.length > 0) {
+        if(this.parsedExtraFields && this.parsedExtraFields.length > 0) {
             this.parsedExtraFields.forEach((parsedExtraField) => {
                 if(parsedExtraField.showInFilter) {
                    fields.set(parsedExtraField.name, parsedExtraField.displayName)
