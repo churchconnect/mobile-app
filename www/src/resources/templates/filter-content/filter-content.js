@@ -1,5 +1,6 @@
 import {inject, bindable, bindingMode} from 'aurelia-framework';
 import {Router} from "aurelia-router";
+import moment from "moment";
 
 @inject(Element, Router)
 export class FilterContent {
@@ -8,6 +9,7 @@ export class FilterContent {
     @bindable searchValue
     @bindable defaults = ["title", "summary", "content"]
     @bindable type
+    @bindable defaultEventsFilter
     @bindable({changeHandler: 'extraFieldsBound'}) extraFields
     @bindable({changeHandler: 'parsedExtraFieldsBound'}) parsedExtraFields
     @bindable({changeHandler: 'fieldsBound'}) fields
@@ -61,6 +63,7 @@ export class FilterContent {
             let option = document.createElement("option");
             option.value = name
             option.innerHTML = displayName
+            option.selected = this.defaultEventsFilter === name;
 
             fieldTypeSelect.appendChild(option)
         })
@@ -72,7 +75,7 @@ export class FilterContent {
         let context = fieldTypeSelect.options[fieldTypeSelect.selectedIndex].value
         let posts = this.data.publishedPosts
 
-        this.filteredPosts = this.filterPosts(searchValue, posts, context)
+        this.filteredPosts = FilterContent.filterPosts(searchValue, posts, context)
     }
 
     filterTypeChange(target) {
@@ -82,21 +85,23 @@ export class FilterContent {
             let searchValue = this.element.querySelector("#filter-box").value
             let posts = this.data.publishedPosts
 
-            this.filteredPosts = this.filterPosts(searchValue, posts, context)
+            this.filteredPosts = FilterContent.filterPosts(searchValue, posts, context)
         } else {
             let events = this.data
-            this.filteredPosts = this.filterEvents(events, context)
+            this.filteredPosts = FilterContent.filterEvents(events, context)
         }
     }
 
-    filterEvents(events, selected) {
+    static filterEvents(events, selected) {
         let filteredEvents = []
 
         if(selected === "All Events") {
             filteredEvents = events
         } else {
-            events.forEach((event) => {
-                if(event.categories.indexOf(selected) !== -1) {
+            events.forEach(event => {
+                let startDate = (event !== undefined && event.startDate !== undefined) ? event.startDate : null;
+
+                if(startDate !== null && moment(startDate).isSame(moment(), 'week')) {
                     filteredEvents.push(event)
                 }
             })
@@ -105,7 +110,7 @@ export class FilterContent {
         return filteredEvents
     }
 
-    filterPosts(searchValue, posts, context) {
+    static filterPosts(searchValue, posts, context) {
         let filteredPosts = []
 
         posts.forEach(post => {

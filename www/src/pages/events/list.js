@@ -3,6 +3,7 @@ import {EventAggregator} from "aurelia-event-aggregator";
 import {EventService, NavigationService} from "../../services/index";
 import {Router} from "aurelia-router";
 import {ConfigurationHolder} from "../../resources/configuration-holder";
+import {FilterContent} from "../../resources/templates/filter-content/filter-content";
 
 @inject(EventService, Router, NavigationService, ConfigurationHolder, EventAggregator)
 export class EventsList {
@@ -14,6 +15,7 @@ export class EventsList {
         this.router = router
         this.navigationService = navigationService
         this.eventAggregator = EventAggregator
+        this.defaultEventsFilter = "This Week";
 
         this.eventsImageURL = configurationHolder.get('eventsImageURL');
 
@@ -23,6 +25,6 @@ export class EventsList {
 
     loadEvents() {
         this.events = this.eventService.list()
-        this.events.promise.then((events) => this.filteredEvents = events)
+        this.events.promise.then((events) => this.filteredEvents = FilterContent.filterEvents(events, this.defaultEventsFilter))
     }
 }

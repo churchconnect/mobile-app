@@ -7,11 +7,13 @@
 
         <filter-content
             extra-fields.bind="[]"
-            defaults.bind="[ 'This Week', 'All Events' ]"
+            defaults.bind="[ 'All Events', 'This Week' ]"
+            default-events-filter.bind="defaultEventsFilter"
             data.bind="events"
             type.bind="'events'"
             filtered-posts.bind="filteredEvents"
             if.bind="events.length > 0"
+            ref="eventFilter"
         >
         </filter-content>
 
