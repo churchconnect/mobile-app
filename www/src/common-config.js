@@ -1,7 +1,7 @@
 export default {
     debug: false,
     testing: false,
-    apiUrl: '',
+    apiUrl: 'http://localhost:8080/',
     endpoint: 'api',
     configureEndpoints: ['api'],
     loginUrl: 'api/login',

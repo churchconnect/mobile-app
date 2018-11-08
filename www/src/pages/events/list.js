@@ -15,7 +15,7 @@ export class EventsList {
         this.navigationService = navigationService
         this.eventAggregator = EventAggregator
 
-        this.eventsImageURL = configurationHolder.get('eventsImageURL')
+        this.eventsImageURL = configurationHolder.get('eventsImageURL');
 
         this.eventAggregator.subscribe('events.cache.updated', () => this.loadEvents())
         this.loadEvents()
