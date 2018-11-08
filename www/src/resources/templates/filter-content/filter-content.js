@@ -109,7 +109,7 @@ export class FilterContent {
             events.forEach(event => {
                 let startDate = (event !== undefined && event.startDate !== undefined) ? event.startDate : null;
 
-                if(startDate !== null && moment(startDate).isSame(moment(), 'week')) {
+                if(startDate !== null && moment(startDate).isSame(moment(), 'isoWeek')) {
                     filteredEvents.push(event)
                 }
             })
