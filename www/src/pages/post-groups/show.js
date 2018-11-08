@@ -27,7 +27,7 @@ export class PostGroupsShow {
     }
 
     attached() {
-        this.accordionService.setup()
+        this.accordionService.setup();
     }
 
     activate(params) {
@@ -51,5 +51,12 @@ export class PostGroupsShow {
             this.messageService.error("Post Group not found", true)
             this.router.navigateBack()
         })
+    }
+
+    postGroupChanged(postGroup) {
+        // More for browser testing than anything.
+        if(postGroup.postGroups.length > 0) {
+            this.accordionService.setup()
+        }
     }
 }
