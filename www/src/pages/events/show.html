@@ -1,5 +1,5 @@
 <template>
-    <page-header if.bind="event.title" title.bind="event.title" image.bind="eventsImageURL"></page-header>
+    <page-header if.bind="event.title" title.bind="event.title" image.bind="app.feed.settings.eventBanner.url"></page-header>
     <page-body>
         <div class="post" class.bind="event.sharingInfo ? 'has-share-link' : ''" if.bind="event">
             <h1>${event.startDate | date}</h1>

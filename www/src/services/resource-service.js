@@ -9,6 +9,7 @@ import {
     PostGroup,
     PrayerRequest,
     SharingInfo,
+    Settings,
     Song,
     SongList
 } from 'models/index'
@@ -24,6 +25,7 @@ let models = [
     PostGroup,
     PrayerRequest,
     SharingInfo,
+    Settings,
     Song,
     SongList
 ]

@@ -32,7 +32,7 @@ export class EventService extends ResourceService {
 
     cacheEventsList(events) {
         events.promise.then((res) => {
-            console.log("Updating Events Cache")
+            console.log("Updating Events Cache", res)
             this.objectCache.set(Event.domainClass, res)
             this.objectCache.traverse(res)
             this.lastUpdated = Date.now()

@@ -8,5 +8,6 @@ export * from './post'
 export * from './post-group'
 export * from './prayer-request'
 export * from './sharing-info'
+export * from "./settings"
 export * from './song'
 export * from './song-list'
