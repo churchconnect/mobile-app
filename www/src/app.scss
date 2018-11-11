@@ -45,6 +45,12 @@ body {
     }
 }
 
+.swiper-container {
+    .swiper-slide {
+        line-height: 0;
+    }
+}
+
 .navbar {
     background: color(primary, base);
     color: color(neutral, lighter);
@@ -78,6 +84,14 @@ body {
                     margin-bottom: 0;
                 }
             }
+        }
+    }
+}
+
+.home {
+    card {
+        image-embed {
+            line-height: 0;
         }
     }
 }

@@ -1,17 +1,19 @@
 <template>
     <require from="../../resources/templates/filter-content/filter-content"></require>
 
-    <page-header title="Events" image.bind="eventsImageURL"></page-header>
+    <page-header title="Events" image.bind="app.feed.settings.eventBanner.url"></page-header>
 
     <page-body>
 
         <filter-content
             extra-fields.bind="[]"
-            defaults.bind="[ 'This Week', 'All Events' ]"
+            defaults.bind="[ 'all_events', 'this_week' ]"
+            default-events-filter.bind="defaultEventsFilter"
             data.bind="events"
             type.bind="'events'"
             filtered-posts.bind="filteredEvents"
             if.bind="events.length > 0"
+            ref="eventFilter"
         >
         </filter-content>
 

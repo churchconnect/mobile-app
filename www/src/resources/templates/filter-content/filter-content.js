@@ -1,13 +1,16 @@
 import {inject, bindable, bindingMode} from 'aurelia-framework';
 import {Router} from "aurelia-router";
+import moment from "moment";
 
 @inject(Element, Router)
 export class FilterContent {
 
+    @bindable allKey = "all_events"
     @bindable context
     @bindable searchValue
     @bindable defaults = ["title", "summary", "content"]
     @bindable type
+    @bindable defaultEventsFilter
     @bindable({changeHandler: 'extraFieldsBound'}) extraFields
     @bindable({changeHandler: 'parsedExtraFieldsBound'}) parsedExtraFields
     @bindable({changeHandler: 'fieldsBound'}) fields
@@ -24,7 +27,7 @@ export class FilterContent {
     extraFieldsBound() {
         let out = []
 
-        if(this.extraFields.length > 0) {
+        if(this.extraFields && this.extraFields.length > 0) {
             let extraFields = JSON.parse(this.extraFields).extraFields
 
             if(extraFields) {
@@ -39,10 +42,17 @@ export class FilterContent {
         let fields = new Map()
 
         this.defaults.forEach(defaultItem => {
-            fields.set(defaultItem, defaultItem.charAt(0).toUpperCase() + defaultItem.slice(1))
+            let multiWord = defaultItem.split("_");
+
+            if(multiWord.length > 0) {
+                multiWord.forEach((word, index) => multiWord[index] = word.charAt(0).toUpperCase() + word.slice(1));
+                fields.set(defaultItem, multiWord.join(" "));
+            } else {
+                fields.set(defaultItem, defaultItem.charAt(0).toUpperCase() + defaultItem.slice(1))
+            }
         })
 
-        if(this.parsedExtraFields.length > 0) {
+        if(this.parsedExtraFields && this.parsedExtraFields.length > 0) {
             this.parsedExtraFields.forEach((parsedExtraField) => {
                 if(parsedExtraField.showInFilter) {
                    fields.set(parsedExtraField.name, parsedExtraField.displayName)
@@ -61,6 +71,7 @@ export class FilterContent {
             let option = document.createElement("option");
             option.value = name
             option.innerHTML = displayName
+            option.selected = this.defaultEventsFilter === name;
 
             fieldTypeSelect.appendChild(option)
         })
@@ -72,7 +83,7 @@ export class FilterContent {
         let context = fieldTypeSelect.options[fieldTypeSelect.selectedIndex].value
         let posts = this.data.publishedPosts
 
-        this.filteredPosts = this.filterPosts(searchValue, posts, context)
+        this.filteredPosts = FilterContent.filterPosts(searchValue, posts, context)
     }
 
     filterTypeChange(target) {
@@ -82,21 +93,23 @@ export class FilterContent {
             let searchValue = this.element.querySelector("#filter-box").value
             let posts = this.data.publishedPosts
 
-            this.filteredPosts = this.filterPosts(searchValue, posts, context)
+            this.filteredPosts = FilterContent.filterPosts(searchValue, posts, context)
         } else {
             let events = this.data
-            this.filteredPosts = this.filterEvents(events, context)
+            this.filteredPosts = FilterContent.filterEvents(events, context === this.allKey)
         }
     }
 
-    filterEvents(events, selected) {
+    static filterEvents(events, all) {
         let filteredEvents = []
 
-        if(selected === "All Events") {
+        if(all) {
             filteredEvents = events
         } else {
-            events.forEach((event) => {
-                if(event.categories.indexOf(selected) !== -1) {
+            events.forEach(event => {
+                let startDate = (event !== undefined && event.startDate !== undefined) ? event.startDate : null;
+
+                if(startDate !== null && moment(startDate).isSame(moment(), 'isoWeek')) {
                     filteredEvents.push(event)
                 }
             })
@@ -105,7 +118,7 @@ export class FilterContent {
         return filteredEvents
     }
 
-    filterPosts(searchValue, posts, context) {
+    static filterPosts(searchValue, posts, context) {
         let filteredPosts = []
 
         posts.forEach(post => {

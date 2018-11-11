@@ -3,21 +3,20 @@ import {PrayerRequestService, NavigationService, MessageService} from 'services/
 import {Router} from "aurelia-router";
 import {PagedContentResolver} from "resources/templates/paged-content/paged-content-resolver"
 import {PagedContentMemory} from "resources/templates/paged-content/paged-content-memory"
-import {ConfigurationHolder} from "../../resources/configuration-holder"
+import {App} from "../../app";
 
-@inject(PrayerRequestService, NavigationService, Router, MessageService, PagedContentResolver.of(PagedContentMemory), ConfigurationHolder)
+@inject(PrayerRequestService, NavigationService, Router, MessageService, PagedContentResolver.of(PagedContentMemory), App)
 export class PrayerRequestsList {
 
     pagedContentMemory
 
-    constructor(prayerRequestService, navigationService, router, messageService, pagedContentResolver, configurationHolder) {
+    constructor(prayerRequestService, navigationService, router, messageService, pagedContentResolver, app) {
         this.prayerRequestService = prayerRequestService
         this.navigationService = navigationService
         this.router = router
         this.messageService = messageService
         this.pagedContentResolver = pagedContentResolver
-
-        this.prayerTimeImageURL = configurationHolder.get('prayerTimeImageURL')
+        this.app = app
     }
 
     activate(params) {

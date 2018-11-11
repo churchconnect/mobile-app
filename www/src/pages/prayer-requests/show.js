@@ -1,19 +1,18 @@
 import {inject} from "aurelia-framework";
 import {PrayerRequestService, MessageService, UserService, NavigationService} from "../../services/index";
 import {Router} from "aurelia-router";
-import {ConfigurationHolder} from "../../resources/configuration-holder";
+import {App} from "../../app";
 
-@inject(PrayerRequestService, Router, MessageService, UserService, NavigationService, ConfigurationHolder)
+@inject(PrayerRequestService, Router, MessageService, UserService, NavigationService, App)
 export class PrayerRequestsShow {
 
-    constructor(prayerRequestService, router, messageService, userService, navigationService, configurationHolder) {
+    constructor(prayerRequestService, router, messageService, userService, navigationService, app) {
         this.prayerRequestService = prayerRequestService
         this.router = router
         this.messageService = messageService
         this.userService = userService
         this.navigationService = navigationService
-
-        this.prayerTimeImageURL = configurationHolder.get('prayerTimeImageURL')
+        this.app = app
     }
 
     activate(params) {

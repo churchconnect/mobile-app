@@ -1,17 +1,16 @@
 import {inject} from "aurelia-framework";
 import {EventService, MessageService} from "../../services/index";
 import {Router} from "aurelia-router";
-import {ConfigurationHolder} from "../../resources/configuration-holder";
+import {App} from "../../app";
 
-@inject(EventService, Router, MessageService, ConfigurationHolder)
+@inject(EventService, Router, MessageService, App)
 export class EventsShow {
 
-    constructor(eventService, router, messageService, configurationHolder) {
+    constructor(eventService, router, messageService, app) {
         this.eventService = eventService
         this.router = router
         this.messageService = messageService
-
-        this.eventsImageURL = configurationHolder.get('eventsImageURL')
+        this.app = app
     }
 
     activate(params) {

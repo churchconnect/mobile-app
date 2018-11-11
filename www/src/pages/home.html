@@ -1,10 +1,10 @@
 <template>
     <slider
-        if.bind="feed.bannerImages"
+        if.bind="app.feed.bannerImages"
         autoplay="5000"
         show-controls="true">
         <slide
-            repeat.for="bannerImage of feed.bannerImages"
+            repeat.for="bannerImage of app.feed.bannerImages"
             aspect-ratio=".5625">
             <img
                 src.bind="bannerImage.image.url"
@@ -13,20 +13,20 @@
     </slider>
 
     <!-- EVENTS -->
-    <card if.bind="feed.events">
+    <card if.bind="app.feed.events">
         <card-header title="Events"
             click.delegate="navigationService.go('#/events/list/')">
         </card-header>
 
         <image-embed
-            if.bind="feed.eventsImageURL"
-            source.bind="feed.eventsImageURL"
+            if.bind="app.feed.settings.eventBanner"
+            source.bind="app.feed.settings.eventBanner.url"
             full-width="true"
             click.delegate="navigationService.go('#/events/list/')">
         </image-embed>
 
         <div class="home-event-list">
-            <p repeat.for="event of feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.delegate="navigationService.go(event)">
+            <p repeat.for="event of app.feed.events | sort:'startDate':'ascending' | filterOutPastItems | limitTo:3" click.delegate="navigationService.go(event)">
                 ${event.startDate | date} - ${event.title}
             </p>
         </div>
@@ -34,15 +34,15 @@
     </card>
 
     <!-- GIVING -->
-    <card if.bind="feed.givingURL">
+    <card if.bind="app.feed.settings.givingLink">
         <card-header title="Giving"></card-header>
-        <share-link sharing-info.bind="sharingInfo.giving"></share-link>
+        <share-link sharing-info.bind="givingSharingInfo()"></share-link>
 
         <button click.trigger="give()" class="link-button-solo">Give</button>
     </card>
 
     <!-- POST GROUPS -->
-    <card click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of feed.postGroups" if.bind="postGroup.showOnHomeFeed" class="card-wrap">
+    <card click.delegate="navigationService.getPostGroupDestination(postGroup)" repeat.for="postGroup of app.feed.postGroups" if.bind="postGroup.showOnHomeFeed" class="card-wrap">
         <card-header title.bind="postGroup.title"></card-header>
         <share-link if.bind="postGroup.lastPost.sharingInfo" sharing-info.bind="postGroup.lastPost.sharingInfo"></share-link>
         <image-embed if.bind="postGroup.media.url" source.bind="postGroup.media.url" full-width="true"></image-embed>
@@ -50,15 +50,15 @@
     </card>
 
     <!-- PRAYER TIME -->
-    <card if.bind="feed.hasPrayerRequests">
+    <card if.bind="app.feed.hasPrayerRequests">
         <card-header
             title="Prayer Time"
             click.delegate="navigationService.go('#/prayer-requests/list')">
         </card-header>
 
         <image-embed
-            if.bind="feed.prayerTimeImageURL"
-            source.bind="feed.prayerTimeImageURL"
+            if.bind="app.feed.settings.prayerTimeBanner"
+            source.bind="app.feed.settings.prayerTimeBanner.url"
             full-width="true"
             click.delegate="navigationService.go('#/prayer-requests/list')">
         </image-embed>
@@ -71,19 +71,21 @@
     </card>
 
     <!-- WATCH LIVE -->
-    <card if.bind="feed.liveStreamLink">
-        <card-header title.bind="feed.liveStreamLink.title"></card-header>
-        <share-link sharing-info.bind="sharingInfo.streaming"></share-link>
+    <card if.bind="app.feed.settings.liveStreamLink">
+        <card-header title.bind="app.feed.settings.liveStreamLink.title"></card-header>
+        <share-link sharing-info.bind="streamingSharingInfo()"></share-link>
 
-        <button click.trigger="navigationService.go(feed.liveStreamLink.post)" class="link-button-solo">${feed.liveStreamLink.textToDisplay}</button>
+        <button click.trigger="navigationService.go(app.feed.settings.liveStreamLink.post)" class="link-button-solo">
+            ${app.feed.settings.liveStreamLink.textToDisplay}
+        </button>
     </card>
 
     <!-- SONG LIST -->
-    <card full-height="true" if.bind="feed.songs">
+    <card full-height="true" if.bind="app.feed.songs">
         <card-header title="Song List"></card-header>
 
         <list full-width="true">
-            <list-item repeat.for="song of feed.songs" title.bind="song.title" subtitle.bind="song.artist">
+            <list-item repeat.for="song of app.feed.songs" title.bind="song.title" subtitle.bind="song.artist">
                 <div slot="after-content">
                     <a click.delegate="navigationService.go(song.lyricsLink.url)" if.bind="song.lyricsLink" class="icon-link">
                         <item-icon icon="file-text-o"></item-icon>
@@ -94,10 +96,10 @@
                     <a click.delegate="navigationService.go(song.amazonLink.url)" if.bind="song.amazonLink" class="icon-link">
                         <item-icon icon="amazon"></item-icon>
                     </a>
-                    <a click.delegate="navigationService.go(song.itunesLink.url)" if.bind="song.itunesLink" class="icon-link">
+                    <a click.delegate="navigationService.go(song.iTunesLink.url)" if.bind="song.iTunesLink" class="icon-link">
                         <item-icon icon="music"></item-icon>
                     </a>
-                    <a click.delegate="navigationService.go(song.youtubeLink.url)" if.bind="song.youtubeLink" class="icon-link">
+                    <a click.delegate="navigationService.go(song.youTubeLink.url)" if.bind="song.youTubeLink" class="icon-link">
                         <item-icon icon="youtube"></item-icon>
                     </a>
                 </div>

@@ -1,27 +1,29 @@
 import {inject, bindable} from "aurelia-framework";
 import {AuthenticateStep, FetchConfig} from "aurelia-authentication";
+import {F7, UserService, MessageService, FeedService} from "./services/index";
 import {EventAggregator} from "aurelia-event-aggregator";
-import {F7, UserService, MessageService} from "./services/index";
+import {Router} from "aurelia-router";
 import environment from "environment";
 import {Endpoint} from "aurelia-api";
 import $ from 'jquery';
 
-@inject(F7, EventAggregator, UserService, Endpoint.of('api'), FetchConfig, MessageService)
+@inject(F7, EventAggregator, UserService, Endpoint.of('api'), FetchConfig, MessageService, Router, FeedService)
 export class App {
 
     @bindable showFooter
 
-    constructor(F7, EventAggregator, UserService, api, FetchConfig, messageService) {
+    constructor(F7, EventAggregator, UserService, api, FetchConfig, messageService, router, feedService) {
         this.f7 = F7
+        this.router = router
         this.events = EventAggregator
         this.userService = UserService
         this.messageService = messageService
-
         this.tabs = environment.tabs
         this.user = UserService.user
         this.api = api
         this.fetchConfig = FetchConfig
         this.showFooter = true
+        this.feedService = feedService
 
         if(window.MobileAccessibility){
             window.MobileAccessibility.usePreferredTextZoom(true);
@@ -33,6 +35,13 @@ export class App {
     }
 
     activate() {
+        this.feed = this.feedService.findOne()
+        this.feed.promise.then(
+            () => {
+                this.events.subscribe('feed.cache.updated', () => this.feed = this.feedService.findOne())
+            }
+        )
+
         this.fetchConfig.configure()
         this.api.client.configure(fetchConfig => {
             fetchConfig
@@ -84,7 +93,7 @@ export class App {
     }
 
     configureRouter(config, router) {
-        config.title = 'TRBC'
+        config.title = 'ChurchConnect'
         config.addPipelineStep('authorize', AuthenticateStep)
         config.addPipelineStep('postcomplete', PostCompleteStep)
         config.mapUnknownRoutes({redirect: '#/home'})
