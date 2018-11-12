@@ -12,3 +12,4 @@ build
 *.zip
 plugins
 manifest.plist
+www/.env.json

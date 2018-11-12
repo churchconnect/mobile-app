@@ -4,6 +4,7 @@ let config = commonConfig;
 
 config["debug"] = true;
 config["testing"] = true;
-config["apiURL"] = 'http://localhost:8080/';
+config['apiUrl'] = "{apiUrl}";
+config["googleMapsApiKey"] = "{googleMapsApiKey}";
 
 export default config;
