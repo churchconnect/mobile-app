@@ -4,5 +4,6 @@ let config = commonConfig;
 
 config["debug"] = true;
 config["testing"] = false;
+config['apiUrl'] = "{apiUrl}";
 
 export default config;

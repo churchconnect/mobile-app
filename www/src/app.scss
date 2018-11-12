@@ -1,5 +1,6 @@
 //override variables
 $fa-font-path: "./fonts";
+$output-bourbon-deprecation-warnings: false;
 
 // vendors
 @import "./node_modules/framework7/dist/css/framework7.ios.css";

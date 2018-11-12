@@ -5,14 +5,17 @@ import babel from 'gulp-babel';
 import sourcemaps from 'gulp-sourcemaps';
 import notify from 'gulp-notify';
 import rename from 'gulp-rename';
+import replace from "gulp-replace";
 import project from '../aurelia.json';
 import {CLIOptions, build} from 'aurelia-cli';
 
 function configureEnvironment() {
   let env = CLIOptions.getEnvironment();
+  let apiUrl = CLIOptions.getFlagValue("apiUrl")
 
   return gulp.src(`aurelia_project/environments/${env}.js`)
     .pipe(changedInPlace({firstPass:true}))
+    .pipe(replace('{apiUrl}', apiUrl))
     .pipe(rename('environment.js'))
     .pipe(gulp.dest(project.paths.root));
 }
